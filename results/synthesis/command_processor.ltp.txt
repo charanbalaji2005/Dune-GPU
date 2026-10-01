@@ -1,0 +1,14 @@
+5. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_command_processor (length=9):
+    0: \cmd_q [63]
+    1: $abc$8590$new_n254_ (via $abc$8590$auto$blifparse.cc:386:parse_blif$8606)
+    2: $abc$8590$new_n255_ (via $abc$8590$auto$blifparse.cc:386:parse_blif$8607)
+    3: $abc$8590$new_n294_ (via $abc$8590$auto$blifparse.cc:386:parse_blif$8646)
+    4: $abc$8590$new_n295_ (via $abc$8590$auto$blifparse.cc:386:parse_blif$8647)
+    5: $abc$8590$new_n296_ (via $abc$8590$auto$blifparse.cc:386:parse_blif$8648)
+    6: $abc$8590$new_n303_ (via $abc$8590$auto$blifparse.cc:386:parse_blif$8655)
+    7: $abc$8590$new_n304_ (via $abc$8590$auto$blifparse.cc:386:parse_blif$8656)
+    8: $abc$8590$new_n305_ (via $abc$8590$auto$blifparse.cc:386:parse_blif$8657)
+    9: $procmux$6980.Y [1] (via $abc$8590$auto$blifparse.cc:386:parse_blif$8658)
+   ff: \st [1] (via $auto$ff.cc:266:slice$7463)

@@ -1,0 +1,18 @@
+6. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_warp_scheduler (length=14):
+    0: \is_mem [3]
+    1: $abc$7886$new_n27_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7898)
+    2: $abc$7886$new_n28_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7899)
+    3: $abc$7886$new_n29_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7900)
+    4: $abc$7886$new_n30_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7901)
+    5: $abc$7886$new_n41_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7912)
+    6: $abc$7886$new_n42_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7913)
+    7: $abc$7886$new_n43_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7914)
+    8: $abc$7886$new_n82_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7953)
+    9: $abc$7886$new_n83_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7954)
+   10: $abc$7886$new_n84_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7955)
+   11: $abc$7886$new_n85_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7956)
+   12: $abc$7886$new_n89_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7960)
+   13: $abc$7886$new_n90_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7961)
+   14: \sel [1] (via $abc$7886$auto$blifparse.cc:386:parse_blif$7962)

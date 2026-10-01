@@ -1,0 +1,18 @@
+5. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_decoder (length=14):
+    0: \instr [3]
+    1: $abc$9883$new_n153_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9934)
+    2: $abc$9883$new_n154_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9935)
+    3: $abc$9883$new_n157_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9938)
+    4: $abc$9883$new_n158_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9939)
+    5: $abc$9883$new_n159_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9940)
+    6: $abc$9883$new_n160_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9941)
+    7: $abc$9883$new_n169_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9950)
+    8: $abc$9883$new_n170_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9951)
+    9: $abc$9883$new_n454_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10235)
+   10: $abc$9883$new_n455_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10236)
+   11: $abc$9883$new_n456_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10237)
+   12: $abc$9883$new_n458_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10239)
+   13: $abc$9883$new_n459_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10240)
+   14: \writes_rd (via $abc$9883$auto$blifparse.cc:386:parse_blif$10241)

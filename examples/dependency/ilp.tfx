@@ -1,0 +1,31 @@
+; ilp.tfx -- four independent chains interleaved (instruction-level parallelism).
+; Same multiply count per iteration as 4x dep_chain's MUL, but consecutive
+; instructions are independent, so a single warp can keep issuing.
+;   arg0 = &out   arg1 = iterations
+        s2r   r1, global_tid
+        s2r   r10, arg0
+        s2r   r11, arg1
+        addi  r2, r1, 1
+        addi  r12, r1, 2
+        addi  r13, r1, 3
+        addi  r14, r1, 4
+        movi  r3, 0
+loop:
+        mul   r2, r2, r2
+        mul   r12, r12, r12
+        mul   r13, r13, r13
+        mul   r14, r14, r14
+        addi  r2, r2, 7
+        addi  r12, r12, 7
+        addi  r13, r13, 7
+        addi  r14, r14, 7
+        addi  r3, r3, 1
+        slt   r6, r3, r11
+        bany  r6, loop
+        xor   r2, r2, r12
+        xor   r2, r2, r13
+        xor   r2, r2, r14
+        slli  r7, r1, 2
+        add   r7, r7, r10
+        sw    r2, 0(r7)
+        exit

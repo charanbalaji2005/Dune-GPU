@@ -1,0 +1,952 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Running command `read_verilog /home/claude/CharanGPU/build/synth/charangpu.v;  hierarchy -top tfx_decoder; synth -flatten -top tfx_decoder;         tee -o /home/claude/CharanGPU/results/synthesis/decoder.stat.txt stat; tee -o /home/claude/CharanGPU/results/synthesis/decoder.ltp.txt ltp -noff' --
+
+1. Executing Verilog-2005 frontend: /home/claude/CharanGPU/build/synth/charangpu.v
+Parsing Verilog input from `/home/claude/CharanGPU/build/synth/charangpu.v' to AST representation.
+Generating RTLIL representation for module `\tfx_alu'.
+Generating RTLIL representation for module `\tfx_mul_pipe'.
+Generating RTLIL representation for module `\tfx_decoder'.
+Generating RTLIL representation for module `\tfx_warp_scheduler'.
+Generating RTLIL representation for module `\tfx_scratchpad'.
+Generating RTLIL representation for module `\tfx_lsu'.
+Generating RTLIL representation for module `\tfx_simt_cluster'.
+Generating RTLIL representation for module `\tfx_command_processor'.
+Generating RTLIL representation for module `\tfx_fifo'.
+Generating RTLIL representation for module `\tfx_token_channel'.
+Generating RTLIL representation for module `\charangpu_tfx_top'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \tfx_decoder
+
+2.2. Analyzing design hierarchy..
+Top module:  \tfx_decoder
+Removing unused module `\charangpu_tfx_top'.
+Removing unused module `\tfx_token_channel'.
+Removing unused module `\tfx_fifo'.
+Removing unused module `\tfx_command_processor'.
+Removing unused module `\tfx_simt_cluster'.
+Removing unused module `\tfx_lsu'.
+Removing unused module `\tfx_scratchpad'.
+Removing unused module `\tfx_warp_scheduler'.
+Removing unused module `\tfx_mul_pipe'.
+Removing unused module `\tfx_alu'.
+Removed 10 unused modules.
+
+3. Executing SYNTH pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \tfx_decoder
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \tfx_decoder
+Removed 0 unused modules.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 8 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435 in module tfx_decoder.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 17 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~8 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$448'.
+Creating decoders for process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+     1/75: $3\sreg[3:0]
+     2/75: $3\is_s2r[0:0]
+     3/75: $5\writes_rd[0:0]
+     4/75: $5\rd[4:0]
+     5/75: $5\ctrl_op[3:0]
+     6/75: $4\alu_op[3:0]
+     7/75: $5\cls[1:0]
+     8/75: $5\legal[0:0]
+     9/75: $6\rb[4:0]
+    10/75: $6\use_b[0:0]
+    11/75: $6\ra[4:0]
+    12/75: $6\use_a[0:0]
+    13/75: $4\writes_rd[0:0]
+    14/75: $4\rd[4:0]
+    15/75: $4\ctrl_op[3:0]
+    16/75: $3\mem_op[1:0]
+    17/75: $4\cls[1:0]
+    18/75: $4\legal[0:0]
+    19/75: $4\imm[31:0]
+    20/75: $5\a_imm[0:0]
+    21/75: $3\writes_rd[0:0]
+    22/75: $3\rd[4:0]
+    23/75: $3\ctrl_op[3:0]
+    24/75: $3\alu_op[3:0]
+    25/75: $3\cls[1:0]
+    26/75: $3\legal[0:0]
+    27/75: $2\sreg[3:0]
+    28/75: $2\is_s2r[0:0]
+    29/75: $5\use_b[0:0]
+    30/75: $5\use_a[0:0]
+    31/75: $5\rb[4:0]
+    32/75: $5\ra[4:0]
+    33/75: $2\mem_op[1:0]
+    34/75: $4\rb[4:0]
+    35/75: $4\use_b[0:0]
+    36/75: $4\a_imm[0:0]
+    37/75: $4\b_imm[0:0]
+    38/75: $4\use_a[0:0]
+    39/75: $4\ra[4:0]
+    40/75: $3\b_imm[0:0]
+    41/75: $3\a_imm[0:0]
+    42/75: $3\use_a[0:0]
+    43/75: $3\ra[4:0]
+    44/75: $3\imm[31:0]
+    45/75: $3\use_b[0:0]
+    46/75: $3\rb[4:0]
+    47/75: $2\imm[31:0]
+    48/75: $2\b_imm[0:0]
+    49/75: $2\a_imm[0:0]
+    50/75: $2\use_b[0:0]
+    51/75: $2\use_a[0:0]
+    52/75: $2\rb[4:0]
+    53/75: $2\ra[4:0]
+    54/75: $2\writes_rd[0:0]
+    55/75: $2\rd[4:0]
+    56/75: $2\ctrl_op[3:0]
+    57/75: $2\cls[1:0]
+    58/75: $2\alu_op[3:0]
+    59/75: $2\legal[0:0]
+    60/75: $1\imm[31:0]
+    61/75: $1\b_imm[0:0]
+    62/75: $1\a_imm[0:0]
+    63/75: $1\writes_rd[0:0]
+    64/75: $1\use_b[0:0]
+    65/75: $1\use_a[0:0]
+    66/75: $1\rb[4:0]
+    67/75: $1\ra[4:0]
+    68/75: $1\rd[4:0]
+    69/75: $1\ctrl_op[3:0]
+    70/75: $1\alu_op[3:0]
+    71/75: $1\cls[1:0]
+    72/75: $1\legal[0:0]
+    73/75: $1\sreg[3:0]
+    74/75: $1\is_s2r[0:0]
+    75/75: $1\mem_op[1:0]
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\tfx_decoder.\_sv2v_0' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$448'.
+No latch inferred for signal `\tfx_decoder.\legal' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\cls' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\alu_op' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\mem_op' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\ctrl_op' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\rd' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\ra' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\rb' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\use_a' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\use_b' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\writes_rd' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\a_imm' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\b_imm' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\is_s2r' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\sreg' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+No latch inferred for signal `\tfx_decoder.\imm' from process `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$448'.
+Found and cleaned up 8 empty switches in `\tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+Removing empty process `tfx_decoder.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:229$435'.
+Cleaned up 8 empty switches.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+<suppressed ~6 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+
+3.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 0 unused cells and 249 unused wires.
+<suppressed ~1 debug messages>
+
+3.6. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_decoder...
+Found and reported 0 problems.
+
+3.7. Executing OPT pass (performing simple optimizations).
+
+3.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+<suppressed ~240 debug messages>
+Removed a total of 80 cells.
+
+3.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$7206.
+    dead port 2/2 on $mux $procmux$7221.
+    dead port 1/2 on $mux $procmux$7224.
+    dead port 2/2 on $mux $procmux$7239.
+    dead port 1/2 on $mux $procmux$7242.
+    dead port 2/2 on $mux $procmux$7257.
+    dead port 1/2 on $mux $procmux$7260.
+    dead port 1/2 on $mux $procmux$7276.
+    dead port 1/2 on $mux $procmux$7294.
+    dead port 2/2 on $mux $procmux$6958.
+    dead port 1/2 on $mux $procmux$7311.
+    dead port 1/2 on $mux $procmux$6961.
+    dead port 2/2 on $mux $procmux$6975.
+    dead port 1/2 on $mux $procmux$7328.
+    dead port 1/2 on $mux $procmux$6978.
+    dead port 2/2 on $mux $procmux$6992.
+    dead port 1/2 on $mux $procmux$6995.
+    dead port 2/2 on $mux $procmux$7009.
+    dead port 1/2 on $mux $procmux$7012.
+    dead port 1/2 on $mux $procmux$7346.
+    dead port 2/2 on $mux $procmux$7026.
+    dead port 1/2 on $mux $procmux$7361.
+    dead port 1/2 on $mux $procmux$7029.
+    dead port 2/2 on $mux $procmux$7043.
+    dead port 1/2 on $mux $procmux$7046.
+    dead port 1/2 on $mux $procmux$7379.
+    dead port 2/2 on $mux $procmux$7060.
+    dead port 1/2 on $mux $procmux$7063.
+    dead port 2/2 on $mux $procmux$7077.
+    dead port 1/2 on $mux $procmux$7080.
+    dead port 2/2 on $mux $procmux$7095.
+    dead port 1/2 on $mux $procmux$7098.
+    dead port 1/2 on $mux $procmux$7397.
+    dead port 2/2 on $mux $procmux$7113.
+    dead port 1/2 on $mux $procmux$7411.
+    dead port 1/2 on $mux $procmux$7425.
+    dead port 1/2 on $mux $procmux$7116.
+    dead port 1/2 on $mux $procmux$7441.
+    dead port 2/2 on $mux $procmux$7131.
+    dead port 1/2 on $mux $procmux$7134.
+    dead port 2/2 on $mux $procmux$7149.
+    dead port 1/2 on $mux $procmux$7456.
+    dead port 1/2 on $mux $procmux$7152.
+    dead port 1/2 on $mux $procmux$7472.
+    dead port 2/2 on $mux $procmux$7167.
+    dead port 1/2 on $mux $procmux$7170.
+    dead port 2/2 on $mux $procmux$7185.
+    dead port 1/2 on $mux $procmux$7487.
+    dead port 1/2 on $mux $procmux$7188.
+    dead port 2/2 on $mux $procmux$7203.
+    dead port 1/2 on $mux $procmux$7504.
+    dead port 1/2 on $mux $procmux$7512.
+    dead port 2/2 on $mux $procmux$7514.
+    dead port 2/2 on $mux $procmux$7516.
+    dead port 1/2 on $mux $procmux$7524.
+    dead port 2/2 on $mux $procmux$7526.
+    dead port 2/2 on $mux $procmux$7528.
+    dead port 2/2 on $mux $procmux$7536.
+    dead port 2/2 on $mux $procmux$7538.
+    dead port 2/2 on $mux $procmux$7540.
+    dead port 2/2 on $mux $procmux$7548.
+    dead port 2/2 on $mux $procmux$7550.
+    dead port 2/2 on $mux $procmux$7552.
+    dead port 2/2 on $mux $procmux$7560.
+    dead port 2/2 on $mux $procmux$7562.
+    dead port 2/2 on $mux $procmux$7564.
+    dead port 2/2 on $mux $procmux$7572.
+    dead port 2/2 on $mux $procmux$7574.
+    dead port 2/2 on $mux $procmux$7576.
+    dead port 2/2 on $mux $procmux$7583.
+    dead port 2/2 on $mux $procmux$7585.
+    dead port 2/2 on $mux $procmux$7592.
+    dead port 2/2 on $mux $procmux$7594.
+    dead port 2/2 on $mux $procmux$7601.
+    dead port 2/2 on $mux $procmux$7603.
+    dead port 2/2 on $mux $procmux$7610.
+    dead port 2/2 on $mux $procmux$7612.
+    dead port 2/2 on $mux $procmux$7619.
+    dead port 2/2 on $mux $procmux$7621.
+    dead port 2/2 on $mux $procmux$7628.
+    dead port 2/2 on $mux $procmux$7630.
+    dead port 2/2 on $mux $procmux$7637.
+    dead port 2/2 on $mux $procmux$7639.
+    dead port 2/2 on $mux $procmux$7645.
+    dead port 2/2 on $mux $procmux$7651.
+    dead port 2/2 on $mux $procmux$7657.
+    dead port 2/2 on $mux $procmux$7663.
+    dead port 2/2 on $mux $procmux$7669.
+    dead port 2/2 on $mux $procmux$7675.
+    dead port 2/2 on $mux $procmux$7681.
+    dead port 2/2 on $mux $procmux$7687.
+    dead port 2/2 on $mux $procmux$7693.
+    dead port 2/2 on $mux $procmux$7699.
+    dead port 2/2 on $mux $procmux$7705.
+    dead port 2/2 on $mux $procmux$7711.
+    dead port 2/2 on $mux $procmux$7717.
+Removed 96 multiplexer ports.
+<suppressed ~16 debug messages>
+
+3.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_decoder.
+    New ctrl vector for $pmux cell $procmux$7266: { $procmux$7274_CMP $auto$opt_reduce.cc:134:opt_pmux$7768 }
+    New ctrl vector for $pmux cell $procmux$7479: { $procmux$7096_CMP $auto$opt_reduce.cc:134:opt_pmux$7770 }
+    New ctrl vector for $pmux cell $procmux$7372: { $procmux$7274_CMP $auto$opt_reduce.cc:134:opt_pmux$7772 $procmux$7096_CMP $procmux$6959_CMP }
+    New ctrl vector for $pmux cell $procmux$7382: { $procmux$7096_CMP $procmux$6959_CMP $auto$opt_reduce.cc:134:opt_pmux$7774 }
+    New ctrl vector for $pmux cell $procmux$7305: { $auto$opt_reduce.cc:134:opt_pmux$7776 $procmux$7096_CMP $procmux$6959_CMP }
+    New ctrl vector for $pmux cell $procmux$7322: { $auto$opt_reduce.cc:134:opt_pmux$7778 $procmux$7096_CMP $procmux$6959_CMP }
+    New ctrl vector for $pmux cell $procmux$7448: { $procmux$7096_CMP $auto$opt_reduce.cc:134:opt_pmux$7780 }
+    New ctrl vector for $pmux cell $procmux$7331: { $auto$opt_reduce.cc:134:opt_pmux$7782 $procmux$7096_CMP $procmux$6959_CMP $procmux$7271_CMP $procmux$7270_CMP $procmux$7269_CMP $procmux$7268_CMP $procmux$7267_CMP $procmux$7334_CMP $procmux$7333_CMP $procmux$7332_CMP }
+  Optimizing cells in module \tfx_decoder.
+Performed a total of 8 changes.
+
+3.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+<suppressed ~18 debug messages>
+Removed a total of 6 cells.
+
+3.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 0 unused cells and 182 unused wires.
+<suppressed ~1 debug messages>
+
+3.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+3.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_decoder.
+Performed a total of 0 changes.
+
+3.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+
+3.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.7.16. Finished OPT passes. (There is nothing left to do.)
+
+3.8. Executing FSM pass (extract and optimize FSM).
+
+3.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+3.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+
+3.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.9. Executing OPT pass (performing simple optimizations).
+
+3.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+3.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_decoder.
+Performed a total of 0 changes.
+
+3.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+
+3.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.9.9. Finished OPT passes. (There is nothing left to do.)
+
+3.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 2) from mux cell tfx_decoder.$procmux$7237 ($mux).
+Removed top 1 bits (of 4) from mux cell tfx_decoder.$procmux$7041 ($mux).
+Removed top 2 bits (of 4) from port B of cell tfx_decoder.$eq$/home/claude/CharanGPU/build/synth/charangpu.v:227$425 ($eq).
+Removed top 13 bits (of 16) from port B of cell tfx_decoder.$le$/home/claude/CharanGPU/build/synth/charangpu.v:228$430 ($le).
+Removed top 12 bits (of 16) from port B of cell tfx_decoder.$ge$/home/claude/CharanGPU/build/synth/charangpu.v:228$431 ($ge).
+Removed top 12 bits (of 16) from port B of cell tfx_decoder.$le$/home/claude/CharanGPU/build/synth/charangpu.v:228$432 ($le).
+Removed top 1 bits (of 4) from port B of cell tfx_decoder.$ne$/home/claude/CharanGPU/build/synth/charangpu.v:249$437 ($ne).
+Removed top 1 bits (of 2) from mux cell tfx_decoder.$ternary$/home/claude/CharanGPU/build/synth/charangpu.v:252$440 ($mux).
+Removed top 1 bits (of 4) from port B of cell tfx_decoder.$eq$/home/claude/CharanGPU/build/synth/charangpu.v:258$442 ($eq).
+Removed top 1 bits (of 4) from port B of cell tfx_decoder.$ne$/home/claude/CharanGPU/build/synth/charangpu.v:269$443 ($ne).
+Removed top 1 bits (of 4) from wire tfx_decoder.$4\alu_op[3:0].
+Removed top 1 bits (of 2) from wire tfx_decoder.$4\cls[1:0].
+Removed top 1 bits (of 2) from wire tfx_decoder.$ternary$/home/claude/CharanGPU/build/synth/charangpu.v:252$440_Y.
+
+3.11. Executing PEEPOPT pass (run peephole optimizers).
+
+3.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module tfx_decoder:
+  creating $alu model for $ge$/home/claude/CharanGPU/build/synth/charangpu.v:228$431 ($ge): new $alu
+  creating $alu model for $le$/home/claude/CharanGPU/build/synth/charangpu.v:228$430 ($le): new $alu
+  creating $alu model for $le$/home/claude/CharanGPU/build/synth/charangpu.v:228$432 ($le): new $alu
+  creating $alu model for $lt$/home/claude/CharanGPU/build/synth/charangpu.v:248$436 ($lt): new $alu
+  creating $alu model for $procmux$7274_CMP0 ($eq): merged with $lt$/home/claude/CharanGPU/build/synth/charangpu.v:248$436.
+  creating $alu cell for $lt$/home/claude/CharanGPU/build/synth/charangpu.v:248$436, $procmux$7274_CMP0: $auto$alumacc.cc:485:replace_alu$7790
+  creating $alu cell for $le$/home/claude/CharanGPU/build/synth/charangpu.v:228$432: $auto$alumacc.cc:485:replace_alu$7801
+  creating $alu cell for $le$/home/claude/CharanGPU/build/synth/charangpu.v:228$430: $auto$alumacc.cc:485:replace_alu$7814
+  creating $alu cell for $ge$/home/claude/CharanGPU/build/synth/charangpu.v:228$431: $auto$alumacc.cc:485:replace_alu$7827
+  created 4 $alu and 0 $macc cells.
+
+3.14. Executing SHARE pass (SAT-based resource sharing).
+
+3.15. Executing OPT pass (performing simple optimizations).
+
+3.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+<suppressed ~16 debug messages>
+
+3.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+3.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_decoder.
+Performed a total of 0 changes.
+
+3.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 1 unused cells and 6 unused wires.
+<suppressed ~2 debug messages>
+
+3.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.15.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.15.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~19 debug messages>
+
+3.15.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_decoder.
+Performed a total of 0 changes.
+
+3.15.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.15.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.15.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+
+3.15.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.15.16. Finished OPT passes. (There is nothing left to do.)
+
+3.16. Executing MEMORY pass.
+
+3.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+
+3.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+
+3.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+
+3.18. Executing OPT pass (performing simple optimizations).
+
+3.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+<suppressed ~21 debug messages>
+
+3.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 4 unused cells and 11 unused wires.
+<suppressed ~5 debug messages>
+
+3.18.5. Finished fast OPT passes.
+
+3.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.20. Executing OPT pass (performing simple optimizations).
+
+3.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~17 debug messages>
+
+3.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_decoder.
+    Consolidated identical input bits for $mux cell $procmux$7024:
+      Old ports: A=4'1001, B=4'0000, Y=$5\ctrl_op[3:0]
+      New ports: A=1'1, B=1'0, Y=$5\ctrl_op[3:0] [0]
+      New connections: $5\ctrl_op[3:0] [3:1] = { $5\ctrl_op[3:0] [0] 2'00 }
+    Consolidated identical input bits for $mux cell $procmux$7041:
+      Old ports: A=3'000, B=3'110, Y=$4\alu_op[3:0]
+      New ports: A=1'0, B=1'1, Y=$4\alu_op[3:0] [1]
+      New connections: { $4\alu_op[3:0] [2] $4\alu_op[3:0] [0] } = { $4\alu_op[3:0] [1] 1'0 }
+    Consolidated identical input bits for $mux cell $procmux$7058:
+      Old ports: A=2'11, B=2'00, Y=$5\cls[1:0]
+      New ports: A=1'1, B=1'0, Y=$5\cls[1:0] [0]
+      New connections: $5\cls[1:0] [1] = $5\cls[1:0] [0]
+    Consolidated identical input bits for $mux cell $procmux$7201:
+      Old ports: A=4'1001, B=4'0000, Y=$4\ctrl_op[3:0]
+      New ports: A=1'1, B=1'0, Y=$4\ctrl_op[3:0] [0]
+      New connections: $4\ctrl_op[3:0] [3:1] = { $4\ctrl_op[3:0] [0] 2'00 }
+    Consolidated identical input bits for $mux cell $procmux$7219:
+      Old ports: A=2'00, B=2'11, Y=$3\mem_op[1:0]
+      New ports: A=1'0, B=1'1, Y=$3\mem_op[1:0] [0]
+      New connections: $3\mem_op[1:0] [1] = $3\mem_op[1:0] [0]
+    Consolidated identical input bits for $pmux cell $procmux$7357:
+      Old ports: A=4'0000, B={ 5'01100 $4\alu_op[3:0] }, Y=$3\alu_op[3:0]
+      New ports: A=3'000, B={ 3'110 $4\alu_op[3:0] }, Y=$3\alu_op[3:0] [2:0]
+      New connections: $3\alu_op[3:0] [3] = 1'0
+    Consolidated identical input bits for $mux cell $procmux$7617:
+      Old ports: A=0, B={ \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15] \instr [15:0] }, Y=$3\imm[31:0]
+      New ports: A=16'0000000000000000, B=\instr [15:0], Y=$3\imm[31:0] [15:0]
+      New connections: $3\imm[31:0] [31:16] = { $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] $3\imm[31:0] [15] }
+    Consolidated identical input bits for $mux cell $procmux$7697:
+      Old ports: A=4'1001, B=4'0000, Y=$2\ctrl_op[3:0]
+      New ports: A=1'1, B=1'0, Y=$2\ctrl_op[3:0] [0]
+      New connections: $2\ctrl_op[3:0] [3:1] = { $2\ctrl_op[3:0] [0] 2'00 }
+  Optimizing cells in module \tfx_decoder.
+    Consolidated identical input bits for $pmux cell $procmux$7357:
+      Old ports: A=3'000, B={ 3'110 $4\alu_op[3:0] }, Y=$3\alu_op[3:0] [2:0]
+      New ports: A=1'0, B={ 1'1 $4\alu_op[3:0] [1] }, Y=$3\alu_op[3:0] [1]
+      New connections: { $3\alu_op[3:0] [2] $3\alu_op[3:0] [0] } = { $3\alu_op[3:0] [1] 1'0 }
+    Consolidated identical input bits for $mux cell $procmux$7643:
+      Old ports: A=0, B=$3\imm[31:0], Y=$2\imm[31:0]
+      New ports: A=16'0000000000000000, B=$3\imm[31:0] [15:0], Y=$2\imm[31:0] [15:0]
+      New connections: $2\imm[31:0] [31:16] = { $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] $2\imm[31:0] [15] }
+  Optimizing cells in module \tfx_decoder.
+Performed a total of 10 changes.
+
+3.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+3.20.6. Executing OPT_SHARE pass.
+    Found cells that share an operand and can be merged by moving the $pmux $procmux$7305 in front of them:
+        $procmux$6990
+        $procmux$7165
+
+3.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+<suppressed ~6 debug messages>
+
+3.20.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.20.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~18 debug messages>
+
+3.20.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_decoder.
+    New ctrl vector for $pmux cell $procmux$7305: { $auto$opt_reduce.cc:134:opt_pmux$7776 $auto$opt_reduce.cc:134:opt_pmux$7848 }
+  Optimizing cells in module \tfx_decoder.
+Performed a total of 1 changes.
+
+3.20.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+3.20.14. Executing OPT_SHARE pass.
+
+3.20.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.20.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.20.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.20.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.20.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~18 debug messages>
+
+3.20.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_decoder.
+Performed a total of 0 changes.
+
+3.20.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.20.22. Executing OPT_SHARE pass.
+
+3.20.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.20.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+
+3.20.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+
+3.20.26. Finished OPT passes. (There is nothing left to do.)
+
+3.21. Executing TECHMAP pass (map to technology primitives).
+
+3.21.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+3.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $reduce_or.
+Using template $paramod$97565c3687be688407d1272a293bd9d0ae6852dc\_90_pmux for cells of type $pmux.
+Using template $paramod$70d30c21ff772b34d0d1da2801fbd781dc3c70e4\_90_pmux for cells of type $pmux.
+Using template $paramod$c5c783b17ab1d780abfad8cfe6563a0a7b47a3b0\_90_pmux for cells of type $pmux.
+Using template $paramod$d629d85c8826a74239b9178d1930215a43b0ceb0\_90_pmux for cells of type $pmux.
+Using template $paramod$068ad458e7761d78e5eed8238508872e7b0aef95\_90_pmux for cells of type $pmux.
+Using template $paramod$73c1c7322faaaa595331a8d8d336d7d573593385\_90_pmux for cells of type $pmux.
+Using template $paramod$fedb90247e1daaa8b0af86a595f377181f141d27\_90_pmux for cells of type $pmux.
+Using template $paramod$ce6e0bffdb8605e70c2145339a50927e2d751e17\_90_alu for cells of type $alu.
+Using template $paramod$8fabc56b80a569262acfc42757a02ca0b8e91278\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $logic_or.
+Using template $paramod$9a7f8f842c7d15a8f6b6820db3daba71c00239a1\_90_alu for cells of type $alu.
+Using template $paramod$a460ba4831a5c553df03ee15bf45a690343e194f\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $logic_and.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using template $paramod$00298f3f8094950cb9a5ff2fda48d0d8bde8806c\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001100 for cells of type $lcu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000110 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000010000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~1063 debug messages>
+
+3.22. Executing OPT pass (performing simple optimizations).
+
+3.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+<suppressed ~516 debug messages>
+
+3.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+<suppressed ~690 debug messages>
+Removed a total of 230 cells.
+
+3.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 77 unused cells and 705 unused wires.
+<suppressed ~78 debug messages>
+
+3.22.5. Finished fast OPT passes.
+
+3.23. Executing ABC pass (technology mapping using ABC).
+
+3.23.1. Extracting gate netlist of module `\tfx_decoder' to `<abc-temp-dir>/input.blif'..
+Extracted 550 gates and 584 wires to a netlist network with 32 inputs and 70 outputs.
+
+3.23.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+3.23.1.2. Re-integrating ABC results.
+ABC RESULTS:               NOT cells:       22
+ABC RESULTS:               NOR cells:       27
+ABC RESULTS:             ORNOT cells:       29
+ABC RESULTS:              NAND cells:       26
+ABC RESULTS:                OR cells:      140
+ABC RESULTS:               AND cells:       16
+ABC RESULTS:               MUX cells:       64
+ABC RESULTS:            ANDNOT cells:      189
+ABC RESULTS:        internal signals:      482
+ABC RESULTS:           input signals:       32
+ABC RESULTS:          output signals:       70
+Removing temp directory.
+
+3.24. Executing OPT pass (performing simple optimizations).
+
+3.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_decoder.
+<suppressed ~6 debug messages>
+
+3.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_decoder'.
+Removed a total of 0 cells.
+
+3.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_decoder..
+Removed 0 unused cells and 277 unused wires.
+<suppressed ~4 debug messages>
+
+3.24.5. Finished fast OPT passes.
+
+3.25. Executing HIERARCHY pass (managing design hierarchy).
+
+3.25.1. Analyzing design hierarchy..
+Top module:  \tfx_decoder
+
+3.25.2. Analyzing design hierarchy..
+Top module:  \tfx_decoder
+Removed 0 unused modules.
+
+3.26. Printing statistics.
+
+=== tfx_decoder ===
+
+   Number of wires:                469
+   Number of wire bits:            620
+   Number of public wires:          26
+   Number of public wire bits:     177
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                513
+     $_ANDNOT_                     189
+     $_AND_                         16
+     $_MUX_                         64
+     $_NAND_                        26
+     $_NOR_                         27
+     $_NOT_                         22
+     $_ORNOT_                       29
+     $_OR_                         140
+
+3.27. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_decoder...
+Found and reported 0 problems.
+
+4. Printing statistics.
+
+=== tfx_decoder ===
+
+   Number of wires:                469
+   Number of wire bits:            620
+   Number of public wires:          26
+   Number of public wire bits:     177
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                513
+     $_ANDNOT_                     189
+     $_AND_                         16
+     $_MUX_                         64
+     $_NAND_                        26
+     $_NOR_                         27
+     $_NOT_                         22
+     $_ORNOT_                       29
+     $_OR_                         140
+
+5. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_decoder (length=14):
+    0: \instr [3]
+    1: $abc$9883$new_n153_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9934)
+    2: $abc$9883$new_n154_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9935)
+    3: $abc$9883$new_n157_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9938)
+    4: $abc$9883$new_n158_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9939)
+    5: $abc$9883$new_n159_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9940)
+    6: $abc$9883$new_n160_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9941)
+    7: $abc$9883$new_n169_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9950)
+    8: $abc$9883$new_n170_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$9951)
+    9: $abc$9883$new_n454_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10235)
+   10: $abc$9883$new_n455_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10236)
+   11: $abc$9883$new_n456_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10237)
+   12: $abc$9883$new_n458_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10239)
+   13: $abc$9883$new_n459_ (via $abc$9883$auto$blifparse.cc:386:parse_blif$10240)
+   14: \writes_rd (via $abc$9883$auto$blifparse.cc:386:parse_blif$10241)
+
+End of script. Logfile hash: 995198b0e0, CPU: user 1.06s system 0.02s, MEM: 65.16 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 58% 3x read_verilog (0 sec), 10% 23x opt_expr (0 sec), ...

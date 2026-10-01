@@ -1,0 +1,22 @@
+
+4. Printing statistics.
+
+=== tfx_decoder ===
+
+   Number of wires:                469
+   Number of wire bits:            620
+   Number of public wires:          26
+   Number of public wire bits:     177
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                513
+     $_ANDNOT_                     189
+     $_AND_                         16
+     $_MUX_                         64
+     $_NAND_                        26
+     $_NOR_                         27
+     $_NOT_                         22
+     $_ORNOT_                       29
+     $_OR_                         140
+

@@ -1,0 +1,76 @@
+OK   /home/claude/CharanGPU/architecture/configuration/tfx_base.json
+OK   /home/claude/CharanGPU/architecture/configuration/tfx_base_l1.json
+OK   /home/claude/CharanGPU/architecture/configuration/tfx_onebank.json
+OK   /home/claude/CharanGPU/architecture/configuration/tfx_small.json
+OK   /home/claude/CharanGPU/architecture/configuration/tfx_wide.json
++ /home/claude/CharanGPU/build/tfx_ref --vectors /home/claude/CharanGPU/build/alu_vectors.txt 5000 20261001
+Generated 5000 ALU vectors at /home/claude/CharanGPU/build/alu_vectors.txt (seed=20261001)
++ /home/claude/CharanGPU/build/tfx_ref --decode-vectors /home/claude/CharanGPU/build/decode_vectors.txt 20000 7
+Generated 20256 decoder vectors at /home/claude/CharanGPU/build/decode_vectors.txt
++ /home/claude/CharanGPU/build/tfx_ref --sched-vectors /home/claude/CharanGPU/build/sched_vectors.txt 4
+Generated 4096 scheduler vectors at /home/claude/CharanGPU/build/sched_vectors.txt
++ iverilog -g2012 -Wall -s tb_alu_diff -o /home/claude/CharanGPU/build/tb_alu_diff /home/claude/CharanGPU/rtl/core/tfx_alu.sv /home/claude/CharanGPU/sim/tb_alu_diff.sv
+warning: Some design elements have no explicit time unit and/or
+       : time precision. This may cause confusing timing results.
+       : Affected design elements are:
+       :   -- module tfx_alu declared here: /home/claude/CharanGPU/rtl/core/tfx_alu.sv:5
++ vvp /home/claude/CharanGPU/build/tb_alu_diff +VECTORS=/home/claude/CharanGPU/build/alu_vectors.txt
+PASS: ALU differential test (5000 vectors)
+/home/claude/CharanGPU/sim/tb_alu_diff.sv:35: $finish called at 5000000 (1ps)
++ iverilog -g2012 -Wall -s tb_register_file -o /home/claude/CharanGPU/build/tb_register_file /home/claude/CharanGPU/rtl/core/tfx_register_file.sv /home/claude/CharanGPU/sim/tb_register_file.sv
+warning: Some design elements have no explicit time unit and/or
+       : time precision. This may cause confusing timing results.
+       : Affected design elements are:
+       :   -- module tfx_register_file declared here: /home/claude/CharanGPU/rtl/core/tfx_register_file.sv:2
++ vvp /home/claude/CharanGPU/build/tb_register_file
+PASS: register file
+/home/claude/CharanGPU/sim/tb_register_file.sv:17: $finish called at 31000 (1ps)
++ iverilog -g2012 -Wall -s tb_token_channel -o /home/claude/CharanGPU/build/tb_token_channel /home/claude/CharanGPU/rtl/interconnect/tfx_token_channel.sv /home/claude/CharanGPU/sim/tb_token_channel.sv
+warning: Some design elements have no explicit time unit and/or
+       : time precision. This may cause confusing timing results.
+       : Affected design elements are:
+       :   -- module tfx_token_channel declared here: /home/claude/CharanGPU/rtl/interconnect/tfx_token_channel.sv:2
++ vvp /home/claude/CharanGPU/build/tb_token_channel
+PASS: token channel
+/home/claude/CharanGPU/sim/tb_token_channel.sv:18: $finish called at 76000 (1ps)
++ iverilog -g2012 -Wall -s tb_fifo -o /home/claude/CharanGPU/build/tb_fifo /home/claude/CharanGPU/rtl/interconnect/tfx_fifo.sv /home/claude/CharanGPU/sim/tb_fifo.sv
+warning: Some design elements have no explicit time unit and/or
+       : time precision. This may cause confusing timing results.
+       : Affected design elements are:
+       :   -- module tfx_fifo declared here: /home/claude/CharanGPU/rtl/interconnect/tfx_fifo.sv:2
++ vvp /home/claude/CharanGPU/build/tb_fifo
+PASS: FIFO
+/home/claude/CharanGPU/sim/tb_fifo.sv:22: $finish called at 101000 (1ps)
++ iverilog -g2012 -Wall -s tb_compute_lane -o /home/claude/CharanGPU/build/tb_compute_lane /home/claude/CharanGPU/rtl/core/tfx_alu.sv /home/claude/CharanGPU/rtl/core/tfx_compute_lane.sv /home/claude/CharanGPU/sim/tb_compute_lane.sv
+warning: Some design elements have no explicit time unit and/or
+       : time precision. This may cause confusing timing results.
+       : Affected design elements are:
+       :   -- module tfx_alu declared here: /home/claude/CharanGPU/rtl/core/tfx_alu.sv:5
+       :   -- module tfx_compute_lane declared here: /home/claude/CharanGPU/rtl/core/tfx_compute_lane.sv:2
++ vvp /home/claude/CharanGPU/build/tb_compute_lane
+PASS: compute lane
+/home/claude/CharanGPU/sim/tb_compute_lane.sv:19: $finish called at 56000 (1ps)
++ iverilog -g2012 -Wall -s tb_decoder_diff -o /home/claude/CharanGPU/build/tb_decoder_diff /home/claude/CharanGPU/rtl/core/tfx_decoder.sv /home/claude/CharanGPU/sim/tb_decoder_diff.sv
+warning: Some design elements have no explicit time unit and/or
+       : time precision. This may cause confusing timing results.
+       : Affected design elements are:
+       :   -- module tfx_decoder declared here: /home/claude/CharanGPU/rtl/core/tfx_decoder.sv:5
+/home/claude/CharanGPU/rtl/core/tfx_decoder.sv:36: sorry: constant selects in always_* processes are not currently supported (all bits will be included).
++ vvp /home/claude/CharanGPU/build/tb_decoder_diff +VECTORS=/home/claude/CharanGPU/build/decode_vectors.txt
+PASS: decoder differential test (20256 vectors)
+/home/claude/CharanGPU/sim/tb_decoder_diff.sv:36: $finish called at 20256000 (1ps)
++ iverilog -g2012 -Wall -s tb_scheduler_diff -o /home/claude/CharanGPU/build/tb_scheduler_diff /home/claude/CharanGPU/rtl/scheduler/tfx_warp_scheduler.sv /home/claude/CharanGPU/sim/tb_scheduler_diff.sv
+warning: Some design elements have no explicit time unit and/or
+       : time precision. This may cause confusing timing results.
+       : Affected design elements are:
+       :   -- module tfx_warp_scheduler declared here: /home/claude/CharanGPU/rtl/scheduler/tfx_warp_scheduler.sv:9
++ vvp /home/claude/CharanGPU/build/tb_scheduler_diff +VECTORS=/home/claude/CharanGPU/build/sched_vectors.txt
+PASS: scheduler differential test (4096 vectors, exhaustive for 4 warps)
+/home/claude/CharanGPU/sim/tb_scheduler_diff.sv:28: $finish called at 4096000 (1ps)
+verilator lint: clean
+........................................................................ [ 29%]
+........................................................................ [ 58%]
+........................................................................ [ 87%]
+..............................                                           [100%]
+246 passed, 4 deselected in 52.64s
+run_all rc=0

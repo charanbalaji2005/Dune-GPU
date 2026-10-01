@@ -1,0 +1,17 @@
+; misaligned_store.tfx -- fault injection (generated for tfx_base by tools/cosim/faults.py).
+; Warp 1 must stop with fault code 2 at label fault_here; all other warps complete.
+        s2r   r1, warp_id
+        seqi  r2, r1, 1
+        bany  r2, bad
+        s2r   r3, global_tid
+        addi  r4, r3, 77
+        slli  r3, r3, 2
+        sw    r4, 0(r3)
+        exit
+bad:
+        s2r   r5, lane_id
+        slli  r5, r5, 2
+        ori   r5, r5, 1
+fault_here:
+        sw    r5, 0(r5)
+        exit

@@ -1,0 +1,36 @@
+; divergence.tfx -- nested if/else divergence followed by a loop whose trip
+; count differs per lane ((tid & 7) + 1). Exercises the mask stack and the
+; "loop until no lane is active" idiom (slt / bnone / if ... endif / jmp).
+;   arg0 = &out
+        s2r   r1, global_tid
+        s2r   r10, arg0
+        andi  r2, r1, 1
+        movi  r5, 0
+        if    r2                  ; odd lanes
+          muli  r5, r1, 3
+          andi  r3, r1, 2
+          if    r3
+            addi  r5, r5, 100
+          else
+            subi  r5, r5, 50
+          endif
+        else                      ; even lanes
+          slli  r5, r1, 4
+        endif
+        andi  r6, r1, 7
+        addi  r6, r6, 1           ; per-lane trip count 1..8
+        movi  r7, 0
+loop:
+        slt   r8, r7, r6
+        bnone r8, done
+        if    r8
+          muli  r5, r5, 5
+          add   r5, r5, r7
+          addi  r7, r7, 1
+        endif
+        jmp   loop
+done:
+        slli  r9, r1, 2
+        add   r9, r9, r10
+        sw    r5, 0(r9)
+        exit

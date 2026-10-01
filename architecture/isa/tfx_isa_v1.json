@@ -1,0 +1,398 @@
+{
+ "name": "TFX-ISA",
+ "version": "1.1",
+ "word_bits": 32,
+ "num_registers": 32,
+ "register_zero": "hardwired to 0; writes are discarded",
+ "pc_bits": 16,
+ "pc_units": "instruction words",
+ "fields": {
+  "op": [
+   31,
+   26
+  ],
+  "rd": [
+   25,
+   21
+  ],
+  "rs1": [
+   20,
+   16
+  ],
+  "rs2": [
+   15,
+   11
+  ],
+  "imm16": [
+   15,
+   0
+  ],
+  "zero11": [
+   10,
+   0
+  ]
+ },
+ "alu_ops": {
+  "ADD": 0,
+  "SUB": 1,
+  "MUL": 2,
+  "AND": 3,
+  "OR": 4,
+  "XOR": 5,
+  "MOV": 6,
+  "SLL": 8,
+  "SRL": 9,
+  "SRA": 10,
+  "SLT": 11,
+  "SLTU": 12,
+  "SEQ": 13,
+  "MULHU": 14,
+  "MULH": 15
+ },
+ "alu_reserved": [
+  7
+ ],
+ "special_registers": {
+  "lane_id": 0,
+  "warp_id": 1,
+  "global_tid": 2,
+  "num_lanes": 3,
+  "num_warps": 4,
+  "arg0": 8,
+  "arg1": 9,
+  "arg2": 10,
+  "arg3": 11,
+  "arg4": 12,
+  "arg5": 13,
+  "arg6": 14,
+  "arg7": 15
+ },
+ "instructions": [
+  {
+   "mnemonic": "add",
+   "opcode": 0,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = rs1 + rs2 (mod 2^32)"
+  },
+  {
+   "mnemonic": "sub",
+   "opcode": 1,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = rs1 - rs2 (mod 2^32)"
+  },
+  {
+   "mnemonic": "mul",
+   "opcode": 2,
+   "format": "R",
+   "class": "mul",
+   "semantics": "rd = low32(rs1 * rs2)"
+  },
+  {
+   "mnemonic": "and",
+   "opcode": 3,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = rs1 & rs2"
+  },
+  {
+   "mnemonic": "or",
+   "opcode": 4,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = rs1 | rs2"
+  },
+  {
+   "mnemonic": "xor",
+   "opcode": 5,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = rs1 ^ rs2"
+  },
+  {
+   "mnemonic": "mov",
+   "opcode": 6,
+   "format": "R1",
+   "class": "alu",
+   "semantics": "rd = rs1"
+  },
+  {
+   "mnemonic": "sll",
+   "opcode": 8,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = rs1 << rs2[4:0]"
+  },
+  {
+   "mnemonic": "srl",
+   "opcode": 9,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = rs1 >> rs2[4:0] (logical)"
+  },
+  {
+   "mnemonic": "sra",
+   "opcode": 10,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = rs1 >>> rs2[4:0] (arithmetic)"
+  },
+  {
+   "mnemonic": "slt",
+   "opcode": 11,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = (signed rs1 < signed rs2) ? 1 : 0"
+  },
+  {
+   "mnemonic": "sltu",
+   "opcode": 12,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = (rs1 < rs2) ? 1 : 0 (unsigned)"
+  },
+  {
+   "mnemonic": "seq",
+   "opcode": 13,
+   "format": "R",
+   "class": "alu",
+   "semantics": "rd = (rs1 == rs2) ? 1 : 0"
+  },
+  {
+   "mnemonic": "mulhu",
+   "opcode": 14,
+   "format": "R",
+   "class": "mul",
+   "semantics": "rd = high32(unsigned rs1 * unsigned rs2)"
+  },
+  {
+   "mnemonic": "mulh",
+   "opcode": 15,
+   "format": "R",
+   "class": "mul",
+   "semantics": "rd = high32(signed rs1 * signed rs2)"
+  },
+  {
+   "mnemonic": "addi",
+   "opcode": 16,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = rs1 + sext(imm16)"
+  },
+  {
+   "mnemonic": "subi",
+   "opcode": 17,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = rs1 - sext(imm16)"
+  },
+  {
+   "mnemonic": "muli",
+   "opcode": 18,
+   "format": "I",
+   "class": "mul",
+   "semantics": "rd = low32(rs1 * sext(imm16))"
+  },
+  {
+   "mnemonic": "andi",
+   "opcode": 19,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = rs1 & sext(imm16)"
+  },
+  {
+   "mnemonic": "ori",
+   "opcode": 20,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = rs1 | sext(imm16)"
+  },
+  {
+   "mnemonic": "xori",
+   "opcode": 21,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = rs1 ^ sext(imm16)"
+  },
+  {
+   "mnemonic": "movi",
+   "opcode": 22,
+   "format": "I1",
+   "class": "alu",
+   "semantics": "rd = sext(imm16)"
+  },
+  {
+   "mnemonic": "slli",
+   "opcode": 24,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = rs1 << imm16[4:0]"
+  },
+  {
+   "mnemonic": "srli",
+   "opcode": 25,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = rs1 >> imm16[4:0] (logical)"
+  },
+  {
+   "mnemonic": "srai",
+   "opcode": 26,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = rs1 >>> imm16[4:0] (arithmetic)"
+  },
+  {
+   "mnemonic": "slti",
+   "opcode": 27,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = (signed rs1 < sext(imm16)) ? 1 : 0"
+  },
+  {
+   "mnemonic": "sltui",
+   "opcode": 28,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = (rs1 < sext(imm16)) ? 1 : 0 (unsigned compare)"
+  },
+  {
+   "mnemonic": "seqi",
+   "opcode": 29,
+   "format": "I",
+   "class": "alu",
+   "semantics": "rd = (rs1 == sext(imm16)) ? 1 : 0"
+  },
+  {
+   "mnemonic": "mulhui",
+   "opcode": 30,
+   "format": "I",
+   "class": "mul",
+   "semantics": "rd = high32(unsigned rs1 * unsigned sext(imm16))"
+  },
+  {
+   "mnemonic": "mulhi",
+   "opcode": 31,
+   "format": "I",
+   "class": "mul",
+   "semantics": "rd = high32(signed rs1 * signed sext(imm16))"
+  },
+  {
+   "mnemonic": "lui",
+   "opcode": 32,
+   "format": "U",
+   "class": "alu",
+   "semantics": "rd = imm16 << 16"
+  },
+  {
+   "mnemonic": "lw",
+   "opcode": 33,
+   "format": "M",
+   "class": "lsu",
+   "semantics": "rd = SPM[rs1 + sext(imm16)] (byte address, must be 4-byte aligned)"
+  },
+  {
+   "mnemonic": "sw",
+   "opcode": 34,
+   "format": "MS",
+   "class": "lsu",
+   "semantics": "SPM[rs1 + sext(imm16)] = R[rd field]; lanes applied in ascending order (highest lane wins on same address)"
+  },
+  {
+   "mnemonic": "atom.add",
+   "opcode": 35,
+   "format": "A",
+   "class": "lsu",
+   "semantics": "rd = SPM[rs1]; SPM[rs1] += rs2; lanes serialized in ascending lane order"
+  },
+  {
+   "mnemonic": "s2r",
+   "opcode": 36,
+   "format": "S",
+   "class": "alu",
+   "semantics": "rd = special_register[imm16]"
+  },
+  {
+   "mnemonic": "jmp",
+   "opcode": 40,
+   "format": "B0",
+   "class": "ctrl",
+   "semantics": "pc = pc + sext(imm16); if rd != 0 and stack depth != rd-1 then fault BRANCH_DEPTH"
+  },
+  {
+   "mnemonic": "bany",
+   "opcode": 41,
+   "format": "B",
+   "class": "ctrl",
+   "semantics": "if any active lane has rs1 != 0 then pc = pc + sext(imm16) else pc = pc + 1; if rd != 0 and stack depth != rd-1 then fault BRANCH_DEPTH"
+  },
+  {
+   "mnemonic": "bnone",
+   "opcode": 42,
+   "format": "B",
+   "class": "ctrl",
+   "semantics": "if no active lane has rs1 != 0 then pc = pc + sext(imm16) else pc = pc + 1; if rd != 0 and stack depth != rd-1 then fault BRANCH_DEPTH"
+  },
+  {
+   "mnemonic": "if",
+   "opcode": 48,
+   "format": "B",
+   "class": "ctrl",
+   "semantics": "taken = mask & (rs1 != 0); push(mask, taken); mask = taken; if taken == 0 then pc = pc + sext(imm16)"
+  },
+  {
+   "mnemonic": "else",
+   "opcode": 49,
+   "format": "B0",
+   "class": "ctrl",
+   "semantics": "mask = top.saved & ~top.taken; if mask == 0 then pc = pc + sext(imm16)"
+  },
+  {
+   "mnemonic": "endif",
+   "opcode": 50,
+   "format": "N",
+   "class": "ctrl",
+   "semantics": "mask = top.saved; pop"
+  },
+  {
+   "mnemonic": "bar",
+   "opcode": 56,
+   "format": "N",
+   "class": "ctrl",
+   "semantics": "after this warp's outstanding ops drain, wait until every live warp waits at a barrier"
+  },
+  {
+   "mnemonic": "exit",
+   "opcode": 57,
+   "format": "N",
+   "class": "ctrl",
+   "semantics": "after this warp's outstanding ops drain, terminate the warp; EXIT_DIVERGENT fault if mask stack is non-empty"
+  }
+ ],
+ "faults": {
+  "NONE": 0,
+  "ILLEGAL_INSTRUCTION": 1,
+  "MEM_MISALIGNED": 2,
+  "MEM_OUT_OF_BOUNDS": 3,
+  "PC_OUT_OF_RANGE": 4,
+  "STACK_OVERFLOW": 5,
+  "STACK_UNDERFLOW": 6,
+  "EXIT_DIVERGENT": 7,
+  "BRANCH_DEPTH": 8
+ },
+ "illegal_encodings": [
+  "any opcode not listed in instructions (includes ALU op 7 in both R and I forms)",
+  "formats R, R1 and A with bits[10:0] != 0",
+  "s2r with imm16 not listed in special_registers"
+ ],
+ "branch_depth_check": {
+  "applies_to": [
+   "jmp",
+   "bany",
+   "bnone"
+  ],
+  "field": "rd (bits 25:21)",
+  "semantics": "rd == 0: unchecked (v1.0 behaviour). rd = D+1: the branch asserts that the warp's mask-stack depth is D when it executes; a mismatch raises BRANCH_DEPTH and no branch is taken. tfxasm emits D = static if/else nesting depth and rejects branches whose target lies in a different structured region."
+ }
+}

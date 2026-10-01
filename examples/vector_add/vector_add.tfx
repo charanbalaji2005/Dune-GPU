@@ -1,0 +1,29 @@
+; vector_add.tfx -- C[i] = A[i] + B[i], grid-stride loop over all launched threads.
+;   arg0 = &A (byte address)  arg1 = &B  arg2 = &C  arg3 = n (elements)
+; Divergence appears only in the last iteration when n is not a multiple of
+; the thread count (handled by the if/endif mask).
+        s2r   r1, global_tid
+        s2r   r2, num_lanes
+        s2r   r3, num_warps
+        mul   r4, r2, r3          ; r4 = total threads = grid stride
+        s2r   r10, arg0
+        s2r   r11, arg1
+        s2r   r12, arg2
+        s2r   r13, arg3
+loop:
+        slt   r5, r1, r13         ; lane still has an element?
+        bnone r5, done
+        if    r5
+          slli  r6, r1, 2
+          add   r7, r10, r6
+          lw    r8, 0(r7)
+          add   r7, r11, r6
+          lw    r9, 0(r7)
+          add   r8, r8, r9
+          add   r7, r12, r6
+          sw    r8, 0(r7)
+        endif
+        add   r1, r1, r4
+        jmp   loop
+done:
+        exit

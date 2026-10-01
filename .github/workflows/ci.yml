@@ -1,0 +1,17 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog verilator yosys g++ cmake python3-pytest
+      - name: Fast regression (C++, unit TBs, lint, pytest without slow RTL kernels)
+        run: scripts/run_all.sh
+      - name: RTL fuzzing (short)
+        run: python3 tools/cosim/fuzz.py --config architecture/configuration/tfx_small.json --count 30 --seed ${{ github.run_number }}
+      - name: Logic synthesis smoke test
+        run: synthesis/yosys/run_synth.sh

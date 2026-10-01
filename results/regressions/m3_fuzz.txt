@@ -1,0 +1,5 @@
+fuzz tfx_base seed=2027: 40/40 programs agree (C++ func + C++ timing + RTL), 32400 simulated cycles, 48.9s
+fuzz tfx_small seed=2027: 40/40 programs agree (C++ func + C++ timing + RTL), 16521 simulated cycles, 13.0s
+fuzz tfx_onebank seed=2027: 40/40 programs agree (C++ func + C++ timing + RTL), 32530 simulated cycles, 41.5s
+fuzz tfx_base_l1 seed=2027: 200/200 programs agree (C++ func + C++ timing), 678574 simulated cycles, 2.3s
+fuzz tfx_wide seed=2027: 25/25 programs agree (C++ func + C++ timing + RTL), 41988 simulated cycles, 109.9s

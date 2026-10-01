@@ -1,0 +1,52 @@
+; reduction.tfx -- cross-warp sum reduction with barriers.
+;   phase 1: grid-stride partial sums, buf[tid] = partial
+;   phase 2: log2(T) tree steps, each followed by BAR (T = launched threads, power of two)
+;   arg0 = &in   arg1 = n   arg2 = &buf (T words)   arg3 = &result
+        s2r   r1, global_tid
+        s2r   r2, num_lanes
+        s2r   r3, num_warps
+        mul   r4, r2, r3          ; T
+        s2r   r10, arg0
+        s2r   r11, arg1
+        s2r   r12, arg2
+        s2r   r13, arg3
+        movi  r5, 0
+        mov   r6, r1
+acc:
+        slt   r7, r6, r11
+        bnone r7, acc_done
+        if    r7
+          slli  r8, r6, 2
+          add   r8, r8, r10
+          lw    r9, 0(r8)
+          add   r5, r5, r9
+        endif
+        add   r6, r6, r4
+        jmp   acc
+acc_done:
+        slli  r14, r1, 2
+        add   r14, r14, r12       ; &buf[tid]
+        sw    r5, 0(r14)
+        bar
+        srli  r15, r4, 1          ; s = T/2 (warp-uniform)
+tree:
+        bnone r15, tree_done
+        slt   r7, r1, r15
+        if    r7
+          slli  r8, r15, 2
+          add   r8, r8, r14       ; &buf[tid + s]
+          lw    r9, 0(r8)
+          lw    r16, 0(r14)
+          add   r16, r16, r9
+          sw    r16, 0(r14)
+        endif
+        bar
+        srli  r15, r15, 1
+        jmp   tree
+tree_done:
+        seqi  r7, r1, 0
+        if    r7
+          lw    r9, 0(r12)
+          sw    r9, 0(r13)
+        endif
+        exit

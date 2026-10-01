@@ -1,0 +1,22 @@
+; dep_chain.tfx -- one long serial dependency chain per thread (MUL -> ALU -> ...).
+; Every instruction consumes the previous result, so the scoreboard must stall
+; for the multiplier latency; only other warps can hide it.
+;   arg0 = &out   arg1 = iterations
+        s2r   r1, global_tid
+        s2r   r10, arg0
+        s2r   r11, arg1
+        addi  r2, r1, 1           ; x = tid + 1
+        movi  r3, 0               ; i
+loop:
+        mul   r2, r2, r2          ; x = x * x        (MUL latency)
+        addi  r2, r2, 7           ; depends on MUL
+        xor   r2, r2, r1
+        srli  r5, r2, 3
+        add   r2, r2, r5
+        addi  r3, r3, 1
+        slt   r6, r3, r11
+        bany  r6, loop            ; uniform trip count
+        slli  r7, r1, 2
+        add   r7, r7, r10
+        sw    r2, 0(r7)
+        exit

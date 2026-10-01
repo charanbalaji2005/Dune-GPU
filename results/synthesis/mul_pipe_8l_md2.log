@@ -1,0 +1,1850 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Running command `read_verilog /home/claude/CharanGPU/build/synth/charangpu.v; chparam -set NL 8 -set MD 2 tfx_mul_pipe; hierarchy -top tfx_mul_pipe; synth -flatten -top tfx_mul_pipe;         tee -o /home/claude/CharanGPU/results/synthesis/mul_pipe_8l_md2.stat.txt stat; tee -o /home/claude/CharanGPU/results/synthesis/mul_pipe_8l_md2.ltp.txt ltp -noff' --
+
+1. Executing Verilog-2005 frontend: /home/claude/CharanGPU/build/synth/charangpu.v
+Parsing Verilog input from `/home/claude/CharanGPU/build/synth/charangpu.v' to AST representation.
+Generating RTLIL representation for module `\tfx_alu'.
+Generating RTLIL representation for module `\tfx_mul_pipe'.
+Generating RTLIL representation for module `\tfx_decoder'.
+Generating RTLIL representation for module `\tfx_warp_scheduler'.
+Generating RTLIL representation for module `\tfx_scratchpad'.
+Generating RTLIL representation for module `\tfx_lsu'.
+Generating RTLIL representation for module `\tfx_simt_cluster'.
+Generating RTLIL representation for module `\tfx_command_processor'.
+Generating RTLIL representation for module `\tfx_fifo'.
+Generating RTLIL representation for module `\tfx_token_channel'.
+Generating RTLIL representation for module `\charangpu_tfx_top'.
+Successfully finished Verilog frontend.
+Parameter \NL = 8
+Parameter \MD = 2
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\tfx_mul_pipe'.
+Parameter \NL = 8
+Parameter \MD = 2
+Generating RTLIL representation for module `$paramod$cfb53da7548d2e1a7c2a998034be6df9c599384a\tfx_mul_pipe'.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1. Analyzing design hierarchy..
+Top module:  \tfx_mul_pipe
+
+3.2. Analyzing design hierarchy..
+Top module:  \tfx_mul_pipe
+Removing unused module `\charangpu_tfx_top'.
+Removing unused module `\tfx_token_channel'.
+Removing unused module `\tfx_fifo'.
+Removing unused module `\tfx_command_processor'.
+Removing unused module `\tfx_simt_cluster'.
+Removing unused module `\tfx_lsu'.
+Removing unused module `\tfx_scratchpad'.
+Removing unused module `\tfx_warp_scheduler'.
+Removing unused module `\tfx_decoder'.
+Removing unused module `\tfx_alu'.
+Removed 10 unused modules.
+
+4. Executing SYNTH pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \tfx_mul_pipe
+
+4.1.2. Analyzing design hierarchy..
+Top module:  \tfx_mul_pipe
+Removed 0 unused modules.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:153$6946 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284 in module tfx_mul_pipe.
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:164$7324 in module tfx_mul_pipe.
+Removed a total of 0 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 42 redundant assignments.
+Promoted 1 assignment to connection.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~10 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:153$6946'.
+     1/1: $0\r1_op[3:0]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955'.
+     1/5: $0\r1_corr[31:0]
+     2/5: $0\r1_hh[31:0]
+     3/5: $0\r1_hl[31:0]
+     4/5: $0\r1_lh[31:0]
+     5/5: $0\r1_ll[31:0]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002'.
+     1/5: $0\r1_corr[63:32]
+     2/5: $0\r1_hh[63:32]
+     3/5: $0\r1_hl[63:32]
+     4/5: $0\r1_lh[63:32]
+     5/5: $0\r1_ll[63:32]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049'.
+     1/5: $0\r1_corr[95:64]
+     2/5: $0\r1_hh[95:64]
+     3/5: $0\r1_hl[95:64]
+     4/5: $0\r1_lh[95:64]
+     5/5: $0\r1_ll[95:64]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096'.
+     1/5: $0\r1_corr[127:96]
+     2/5: $0\r1_hh[127:96]
+     3/5: $0\r1_hl[127:96]
+     4/5: $0\r1_lh[127:96]
+     5/5: $0\r1_ll[127:96]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143'.
+     1/5: $0\r1_corr[159:128]
+     2/5: $0\r1_hh[159:128]
+     3/5: $0\r1_hl[159:128]
+     4/5: $0\r1_lh[159:128]
+     5/5: $0\r1_ll[159:128]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190'.
+     1/5: $0\r1_corr[191:160]
+     2/5: $0\r1_hh[191:160]
+     3/5: $0\r1_hl[191:160]
+     4/5: $0\r1_lh[191:160]
+     5/5: $0\r1_ll[191:160]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237'.
+     1/5: $0\r1_corr[223:192]
+     2/5: $0\r1_hh[223:192]
+     3/5: $0\r1_hl[223:192]
+     4/5: $0\r1_lh[223:192]
+     5/5: $0\r1_ll[223:192]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284'.
+     1/5: $0\r1_corr[255:224]
+     2/5: $0\r1_hh[255:224]
+     3/5: $0\r1_hl[255:224]
+     4/5: $0\r1_lh[255:224]
+     5/5: $0\r1_ll[255:224]
+Creating decoders for process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:164$7324'.
+     1/2: $0\g_mdn.pipe[255:0]
+     2/2: $1\g_mdn.sv2v_autoblock_1.s[31:0]
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\tfx_mul_pipe.\r1_op' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:153$6946'.
+  created $dff cell `$procdff$7455' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_ll [31:0]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955'.
+  created $dff cell `$procdff$7456' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_lh [31:0]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955'.
+  created $dff cell `$procdff$7457' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hl [31:0]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955'.
+  created $dff cell `$procdff$7458' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hh [31:0]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955'.
+  created $dff cell `$procdff$7459' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_corr [31:0]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955'.
+  created $dff cell `$procdff$7460' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_ll [63:32]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002'.
+  created $dff cell `$procdff$7461' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_lh [63:32]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002'.
+  created $dff cell `$procdff$7462' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hl [63:32]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002'.
+  created $dff cell `$procdff$7463' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hh [63:32]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002'.
+  created $dff cell `$procdff$7464' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_corr [63:32]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002'.
+  created $dff cell `$procdff$7465' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_ll [95:64]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049'.
+  created $dff cell `$procdff$7466' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_lh [95:64]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049'.
+  created $dff cell `$procdff$7467' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hl [95:64]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049'.
+  created $dff cell `$procdff$7468' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hh [95:64]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049'.
+  created $dff cell `$procdff$7469' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_corr [95:64]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049'.
+  created $dff cell `$procdff$7470' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_ll [127:96]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096'.
+  created $dff cell `$procdff$7471' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_lh [127:96]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096'.
+  created $dff cell `$procdff$7472' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hl [127:96]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096'.
+  created $dff cell `$procdff$7473' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hh [127:96]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096'.
+  created $dff cell `$procdff$7474' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_corr [127:96]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096'.
+  created $dff cell `$procdff$7475' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_ll [159:128]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143'.
+  created $dff cell `$procdff$7476' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_lh [159:128]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143'.
+  created $dff cell `$procdff$7477' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hl [159:128]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143'.
+  created $dff cell `$procdff$7478' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hh [159:128]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143'.
+  created $dff cell `$procdff$7479' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_corr [159:128]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143'.
+  created $dff cell `$procdff$7480' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_ll [191:160]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190'.
+  created $dff cell `$procdff$7481' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_lh [191:160]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190'.
+  created $dff cell `$procdff$7482' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hl [191:160]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190'.
+  created $dff cell `$procdff$7483' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hh [191:160]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190'.
+  created $dff cell `$procdff$7484' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_corr [191:160]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190'.
+  created $dff cell `$procdff$7485' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_ll [223:192]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237'.
+  created $dff cell `$procdff$7486' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_lh [223:192]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237'.
+  created $dff cell `$procdff$7487' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hl [223:192]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237'.
+  created $dff cell `$procdff$7488' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hh [223:192]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237'.
+  created $dff cell `$procdff$7489' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_corr [223:192]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237'.
+  created $dff cell `$procdff$7490' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_ll [255:224]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284'.
+  created $dff cell `$procdff$7491' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_lh [255:224]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284'.
+  created $dff cell `$procdff$7492' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hl [255:224]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284'.
+  created $dff cell `$procdff$7493' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_hh [255:224]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284'.
+  created $dff cell `$procdff$7494' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\r1_corr [255:224]' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284'.
+  created $dff cell `$procdff$7495' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\g_mdn.pipe' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:164$7324'.
+  created $dff cell `$procdff$7496' with positive edge clock.
+Creating register for signal `\tfx_mul_pipe.\g_mdn.sv2v_autoblock_1.s' using process `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:164$7324'.
+  created $dff cell `$procdff$7497' with positive edge clock.
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:153$6946'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:153$6946'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$6955'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7002'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7049'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7096'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7143'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7190'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7237'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:119$7284'.
+Found and cleaned up 1 empty switch in `\tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:164$7324'.
+Removing empty process `tfx_mul_pipe.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:164$7324'.
+Cleaned up 10 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+<suppressed ~75 debug messages>
+
+4.3. Executing FLATTEN pass (flatten design).
+
+4.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+Removed 12 unused cells and 235 unused wires.
+<suppressed ~14 debug messages>
+
+4.6. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_mul_pipe...
+Found and reported 0 problems.
+
+4.7. Executing OPT pass (performing simple optimizations).
+
+4.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+<suppressed ~42 debug messages>
+Removed a total of 14 cells.
+
+4.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_mul_pipe..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~66 debug messages>
+
+4.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_mul_pipe.
+Performed a total of 0 changes.
+
+4.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+Removed 0 unused cells and 7 unused wires.
+<suppressed ~1 debug messages>
+
+4.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_mul_pipe..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~66 debug messages>
+
+4.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_mul_pipe.
+Performed a total of 0 changes.
+
+4.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.7.16. Finished OPT passes. (There is nothing left to do.)
+
+4.8. Executing FSM pass (extract and optimize FSM).
+
+4.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+4.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+4.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+4.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+4.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+4.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+4.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+4.9. Executing OPT pass (performing simple optimizations).
+
+4.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_mul_pipe..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~66 debug messages>
+
+4.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_mul_pipe.
+Performed a total of 0 changes.
+
+4.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$7496 ($dff) from module tfx_mul_pipe (D = \stage_b, Q = \g_mdn.pipe, rval = 256'0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000).
+Adding SRST signal on $procdff$7495 ($dff) from module tfx_mul_pipe (D = \g_lane[7].corr, Q = \r1_corr [255:224], rval = 0).
+Adding SRST signal on $procdff$7494 ($dff) from module tfx_mul_pipe (D = \g_lane[7].hh, Q = \r1_hh [255:224], rval = 0).
+Adding SRST signal on $procdff$7493 ($dff) from module tfx_mul_pipe (D = \g_lane[7].hl, Q = \r1_hl [255:224], rval = 0).
+Adding SRST signal on $procdff$7492 ($dff) from module tfx_mul_pipe (D = \g_lane[7].lh, Q = \r1_lh [255:224], rval = 0).
+Adding SRST signal on $procdff$7491 ($dff) from module tfx_mul_pipe (D = \g_lane[7].ll, Q = \r1_ll [255:224], rval = 0).
+Adding SRST signal on $procdff$7490 ($dff) from module tfx_mul_pipe (D = \g_lane[6].corr, Q = \r1_corr [223:192], rval = 0).
+Adding SRST signal on $procdff$7489 ($dff) from module tfx_mul_pipe (D = \g_lane[6].hh, Q = \r1_hh [223:192], rval = 0).
+Adding SRST signal on $procdff$7488 ($dff) from module tfx_mul_pipe (D = \g_lane[6].hl, Q = \r1_hl [223:192], rval = 0).
+Adding SRST signal on $procdff$7487 ($dff) from module tfx_mul_pipe (D = \g_lane[6].lh, Q = \r1_lh [223:192], rval = 0).
+Adding SRST signal on $procdff$7486 ($dff) from module tfx_mul_pipe (D = \g_lane[6].ll, Q = \r1_ll [223:192], rval = 0).
+Adding SRST signal on $procdff$7485 ($dff) from module tfx_mul_pipe (D = \g_lane[5].corr, Q = \r1_corr [191:160], rval = 0).
+Adding SRST signal on $procdff$7484 ($dff) from module tfx_mul_pipe (D = \g_lane[5].hh, Q = \r1_hh [191:160], rval = 0).
+Adding SRST signal on $procdff$7483 ($dff) from module tfx_mul_pipe (D = \g_lane[5].hl, Q = \r1_hl [191:160], rval = 0).
+Adding SRST signal on $procdff$7482 ($dff) from module tfx_mul_pipe (D = \g_lane[5].lh, Q = \r1_lh [191:160], rval = 0).
+Adding SRST signal on $procdff$7481 ($dff) from module tfx_mul_pipe (D = \g_lane[5].ll, Q = \r1_ll [191:160], rval = 0).
+Adding SRST signal on $procdff$7480 ($dff) from module tfx_mul_pipe (D = \g_lane[4].corr, Q = \r1_corr [159:128], rval = 0).
+Adding SRST signal on $procdff$7479 ($dff) from module tfx_mul_pipe (D = \g_lane[4].hh, Q = \r1_hh [159:128], rval = 0).
+Adding SRST signal on $procdff$7478 ($dff) from module tfx_mul_pipe (D = \g_lane[4].hl, Q = \r1_hl [159:128], rval = 0).
+Adding SRST signal on $procdff$7477 ($dff) from module tfx_mul_pipe (D = \g_lane[4].lh, Q = \r1_lh [159:128], rval = 0).
+Adding SRST signal on $procdff$7476 ($dff) from module tfx_mul_pipe (D = \g_lane[4].ll, Q = \r1_ll [159:128], rval = 0).
+Adding SRST signal on $procdff$7475 ($dff) from module tfx_mul_pipe (D = \g_lane[3].corr, Q = \r1_corr [127:96], rval = 0).
+Adding SRST signal on $procdff$7474 ($dff) from module tfx_mul_pipe (D = \g_lane[3].hh, Q = \r1_hh [127:96], rval = 0).
+Adding SRST signal on $procdff$7473 ($dff) from module tfx_mul_pipe (D = \g_lane[3].hl, Q = \r1_hl [127:96], rval = 0).
+Adding SRST signal on $procdff$7472 ($dff) from module tfx_mul_pipe (D = \g_lane[3].lh, Q = \r1_lh [127:96], rval = 0).
+Adding SRST signal on $procdff$7471 ($dff) from module tfx_mul_pipe (D = \g_lane[3].ll, Q = \r1_ll [127:96], rval = 0).
+Adding SRST signal on $procdff$7470 ($dff) from module tfx_mul_pipe (D = \g_lane[2].corr, Q = \r1_corr [95:64], rval = 0).
+Adding SRST signal on $procdff$7469 ($dff) from module tfx_mul_pipe (D = \g_lane[2].hh, Q = \r1_hh [95:64], rval = 0).
+Adding SRST signal on $procdff$7468 ($dff) from module tfx_mul_pipe (D = \g_lane[2].hl, Q = \r1_hl [95:64], rval = 0).
+Adding SRST signal on $procdff$7467 ($dff) from module tfx_mul_pipe (D = \g_lane[2].lh, Q = \r1_lh [95:64], rval = 0).
+Adding SRST signal on $procdff$7466 ($dff) from module tfx_mul_pipe (D = \g_lane[2].ll, Q = \r1_ll [95:64], rval = 0).
+Adding SRST signal on $procdff$7465 ($dff) from module tfx_mul_pipe (D = \g_lane[1].corr, Q = \r1_corr [63:32], rval = 0).
+Adding SRST signal on $procdff$7464 ($dff) from module tfx_mul_pipe (D = \g_lane[1].hh, Q = \r1_hh [63:32], rval = 0).
+Adding SRST signal on $procdff$7463 ($dff) from module tfx_mul_pipe (D = \g_lane[1].hl, Q = \r1_hl [63:32], rval = 0).
+Adding SRST signal on $procdff$7462 ($dff) from module tfx_mul_pipe (D = \g_lane[1].lh, Q = \r1_lh [63:32], rval = 0).
+Adding SRST signal on $procdff$7461 ($dff) from module tfx_mul_pipe (D = \g_lane[1].ll, Q = \r1_ll [63:32], rval = 0).
+Adding SRST signal on $procdff$7460 ($dff) from module tfx_mul_pipe (D = \g_lane[0].corr, Q = \r1_corr [31:0], rval = 0).
+Adding SRST signal on $procdff$7459 ($dff) from module tfx_mul_pipe (D = \g_lane[0].hh, Q = \r1_hh [31:0], rval = 0).
+Adding SRST signal on $procdff$7458 ($dff) from module tfx_mul_pipe (D = \g_lane[0].hl, Q = \r1_hl [31:0], rval = 0).
+Adding SRST signal on $procdff$7457 ($dff) from module tfx_mul_pipe (D = \g_lane[0].lh, Q = \r1_lh [31:0], rval = 0).
+Adding SRST signal on $procdff$7456 ($dff) from module tfx_mul_pipe (D = \g_lane[0].ll, Q = \r1_ll [31:0], rval = 0).
+Adding SRST signal on $procdff$7455 ($dff) from module tfx_mul_pipe (D = \op, Q = \r1_op, rval = 4'0000).
+
+4.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+Removed 42 unused cells and 42 unused wires.
+<suppressed ~43 debug messages>
+
+4.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_mul_pipe..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~32 debug messages>
+
+4.9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_mul_pipe.
+Performed a total of 0 changes.
+
+4.9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.9.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.9.16. Finished OPT passes. (There is nothing left to do.)
+
+4.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$6948 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$6948 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$6949 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$6949 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$6950 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$6950 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$6951 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$6951 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$6960 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$6960 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$6960 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$6961 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$6961 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$6961 ($xor).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6962 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6962 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6962 ($and).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6963 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6963 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6963 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$6964 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$6964 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$6964 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6965 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6965 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6965 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$6966 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$6966 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$6966 ($or).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:143$6969 ($xor).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6971 ($and).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6973 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$6974 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$6974 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$6974 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$6976 ($xor).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$6976 ($xor).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$6976 ($xor).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$6977 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6978 ($and).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6978 ($and).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6978 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6979 ($and).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$6980 ($or).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6981 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$6982 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$6982 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$6982 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$6990 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$6990 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$6990 ($or).
+Removed top 2 bits (of 4) from port B of cell tfx_mul_pipe.$eq$/home/claude/CharanGPU/build/synth/charangpu.v:150$6993 ($eq).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$6995 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$6995 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$6996 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$6996 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$6997 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$6997 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$6998 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$6998 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7007 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7007 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7007 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7008 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7008 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7008 ($xor).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7009 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7009 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7009 ($and).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7010 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7010 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7010 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7011 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7011 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7011 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7012 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7012 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7012 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7013 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7013 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7013 ($or).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:143$7016 ($xor).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7018 ($and).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7020 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7021 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7021 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7021 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7023 ($xor).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7023 ($xor).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7023 ($xor).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7024 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7025 ($and).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7025 ($and).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7025 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7026 ($and).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7027 ($or).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7028 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7029 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7029 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7029 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7037 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7037 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7037 ($or).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7042 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7042 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7043 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7043 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7044 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7044 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7045 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7045 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7054 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7054 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7054 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7055 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7055 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7055 ($xor).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7056 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7056 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7056 ($and).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7057 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7057 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7057 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7058 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7058 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7058 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7059 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7059 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7059 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7060 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7060 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7060 ($or).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:143$7063 ($xor).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7065 ($and).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7067 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7068 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7068 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7068 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7070 ($xor).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7070 ($xor).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7070 ($xor).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7071 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7072 ($and).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7072 ($and).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7072 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7073 ($and).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7074 ($or).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7075 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7076 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7076 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7076 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7084 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7084 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7084 ($or).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7089 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7089 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7090 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7090 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7091 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7091 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7092 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7092 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7101 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7101 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7101 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7102 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7102 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7102 ($xor).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7103 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7103 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7103 ($and).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7104 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7104 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7104 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7105 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7105 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7105 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7106 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7106 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7106 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7107 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7107 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7107 ($or).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:143$7110 ($xor).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7112 ($and).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7114 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7115 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7115 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7115 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7117 ($xor).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7117 ($xor).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7117 ($xor).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7118 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7119 ($and).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7119 ($and).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7119 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7120 ($and).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7121 ($or).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7122 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7123 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7123 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7123 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7131 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7131 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7131 ($or).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7136 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7136 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7137 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7137 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7138 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7138 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7139 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7139 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7148 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7148 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7148 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7149 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7149 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7149 ($xor).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7150 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7150 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7150 ($and).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7151 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7151 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7151 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7152 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7152 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7152 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7153 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7153 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7153 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7154 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7154 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7154 ($or).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:143$7157 ($xor).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7159 ($and).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7161 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7162 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7162 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7162 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7164 ($xor).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7164 ($xor).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7164 ($xor).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7165 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7166 ($and).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7166 ($and).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7166 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7167 ($and).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7168 ($or).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7169 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7170 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7170 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7170 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7178 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7178 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7178 ($or).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7183 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7183 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7184 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7184 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7185 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7185 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7186 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7186 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7195 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7195 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7195 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7196 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7196 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7196 ($xor).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7197 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7197 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7197 ($and).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7198 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7198 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7198 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7199 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7199 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7199 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7200 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7200 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7200 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7201 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7201 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7201 ($or).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:143$7204 ($xor).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7206 ($and).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7208 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7209 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7209 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7209 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7211 ($xor).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7211 ($xor).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7211 ($xor).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7212 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7213 ($and).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7213 ($and).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7213 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7214 ($and).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7215 ($or).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7216 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7217 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7217 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7217 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7225 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7225 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7225 ($or).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7230 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7230 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7231 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7231 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7232 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7232 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7233 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7233 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7242 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7242 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7242 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7243 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7243 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7243 ($xor).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7244 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7244 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7244 ($and).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7245 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7245 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7245 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7246 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7246 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7246 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7247 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7247 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7247 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7248 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7248 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7248 ($or).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:143$7251 ($xor).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7253 ($and).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7255 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7256 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7256 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7256 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7258 ($xor).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7258 ($xor).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7258 ($xor).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7259 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7260 ($and).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7260 ($and).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7260 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7261 ($and).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7262 ($or).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7263 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7264 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7264 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7264 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7272 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7272 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7272 ($or).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7277 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7277 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7278 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7278 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7279 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7279 ($mul).
+Removed top 16 bits (of 32) from port A of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7280 ($mul).
+Removed top 16 bits (of 32) from port B of cell tfx_mul_pipe.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7280 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7289 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7289 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7289 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7290 ($xor).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7290 ($xor).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:141$7290 ($xor).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7291 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7291 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7291 ($and).
+Removed top 32 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7292 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7292 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7292 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7293 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7293 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7293 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7294 ($and).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7294 ($and).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7294 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7295 ($or).
+Removed top 16 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7295 ($or).
+Removed top 16 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7295 ($or).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:143$7298 ($xor).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7300 ($and).
+Removed top 63 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7302 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7303 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7303 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7303 ($or).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7305 ($xor).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7305 ($xor).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7305 ($xor).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$xor$/home/claude/CharanGPU/build/synth/charangpu.v:145$7306 ($xor).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7307 ($and).
+Removed top 15 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7307 ($and).
+Removed top 15 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7307 ($and).
+Removed top 16 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7308 ($and).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7309 ($or).
+Removed top 15 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7310 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7311 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7311 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7311 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7319 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7319 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7319 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$6972 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$6972 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$6972 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6973 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6973 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$6980 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$6980 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6981 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6981 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$6988 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$6988 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$6988 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6989 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6989 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6989 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7019 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7019 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7019 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7020 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7020 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7027 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7027 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7028 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7028 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7035 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7035 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7035 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7036 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7036 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7036 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7066 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7066 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7066 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7067 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7067 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7074 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7074 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7075 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7075 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7082 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7082 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7082 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7083 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7083 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7083 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7113 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7113 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7113 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7114 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7114 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7121 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7121 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7122 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7122 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7129 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7129 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7129 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7130 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7130 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7130 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7160 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7160 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7160 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7161 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7161 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7168 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7168 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7169 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7169 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7176 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7176 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7176 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7177 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7177 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7177 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7207 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7207 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7207 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7208 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7208 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7215 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7215 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7216 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7216 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7223 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7223 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7223 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7224 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7224 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7224 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7254 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7254 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7254 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7255 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7255 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7262 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7262 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7263 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7263 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7270 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7270 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7270 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7271 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7271 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7271 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7301 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7301 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7301 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7302 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7302 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7309 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7309 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7310 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7310 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7317 ($or).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7317 ($or).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7317 ($or).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7318 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7318 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7318 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6970 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6970 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6970 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6971 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6971 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6979 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6979 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6986 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6986 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6986 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6987 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6987 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6987 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7017 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7017 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7017 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7018 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7018 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7026 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7026 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7033 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7033 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7033 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7034 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7034 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7034 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7064 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7064 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7064 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7065 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7065 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7073 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7073 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7080 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7080 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7080 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7081 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7081 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7081 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7111 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7111 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7111 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7112 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7112 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7120 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7120 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7127 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7127 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7127 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7128 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7128 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7128 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7158 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7158 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7158 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7159 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7159 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7167 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7167 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7174 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7174 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7174 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7175 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7175 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7175 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7205 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7205 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7205 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7206 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7206 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7214 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7214 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7221 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7221 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7221 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7222 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7222 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7222 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7252 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7252 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7252 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7253 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7253 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7261 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7261 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7268 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7268 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7268 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7269 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7269 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7269 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7299 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7299 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7299 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7300 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7300 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7308 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7308 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7315 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7315 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7315 ($and).
+Removed top 1 bits (of 64) from port Y of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7316 ($and).
+Removed top 1 bits (of 64) from port A of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7316 ($and).
+Removed top 1 bits (of 64) from port B of cell tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7316 ($and).
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6962_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6963_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$6965_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7009_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7010_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7012_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7056_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7057_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7059_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7103_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7104_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7106_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7150_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7151_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7153_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7197_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7198_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7200_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7244_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7245_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7247_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7291_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7292_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:142$7294_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6970_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6971_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$6973_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7017_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7018_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7020_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7064_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7065_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7067_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7111_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7112_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7114_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7158_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7159_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7161_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7205_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7206_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7208_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7252_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7253_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7255_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7299_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7300_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:144$7302_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6978_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6979_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$6981_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7025_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7026_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7028_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7072_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7073_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7075_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7119_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7120_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7122_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7166_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7167_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7169_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7213_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7214_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7216_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7260_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7261_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7263_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7307_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7308_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:146$7310_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6986_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6987_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$6989_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7033_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7034_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7036_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7080_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7081_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7083_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7127_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7128_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7130_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7174_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7175_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7177_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7221_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7222_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7268_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$and$/home/claude/CharanGPU/build/synth/charangpu.v:148$7315_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$6966_Y.
+Removed top 63 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7011_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7013_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7060_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7107_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7154_Y.
+Removed top 63 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7199_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7201_Y.
+Removed top 63 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7246_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7248_Y.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:142$7295_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$6974_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7021_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7068_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7115_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7162_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7209_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7256_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:144$7303_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$6982_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7029_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7076_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7123_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7170_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7217_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7264_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:146$7311_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$6990_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7037_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7084_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7131_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7178_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7225_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7272_Y.
+Removed top 1 bits (of 64) from wire tfx_mul_pipe.$or$/home/claude/CharanGPU/build/synth/charangpu.v:148$7319_Y.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.g_lane[0].c1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[0].s1.
+Removed top 32 bits (of 64) from wire tfx_mul_pipe.g_lane[0].x0.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[0].x1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[0].x2.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.g_lane[1].c1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[1].s1.
+Removed top 32 bits (of 64) from wire tfx_mul_pipe.g_lane[1].x0.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[1].x1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[1].x2.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.g_lane[2].c1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[2].s1.
+Removed top 32 bits (of 64) from wire tfx_mul_pipe.g_lane[2].x0.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[2].x1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[2].x2.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.g_lane[3].c1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[3].s1.
+Removed top 32 bits (of 64) from wire tfx_mul_pipe.g_lane[3].x0.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[3].x1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[3].x2.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.g_lane[4].c1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[4].s1.
+Removed top 32 bits (of 64) from wire tfx_mul_pipe.g_lane[4].x0.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[4].x1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[4].x2.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.g_lane[5].c1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[5].s1.
+Removed top 32 bits (of 64) from wire tfx_mul_pipe.g_lane[5].x0.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[5].x1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[5].x2.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.g_lane[6].c1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[6].s1.
+Removed top 32 bits (of 64) from wire tfx_mul_pipe.g_lane[6].x0.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[6].x1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[6].x2.
+Removed top 15 bits (of 64) from wire tfx_mul_pipe.g_lane[7].c1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[7].s1.
+Removed top 32 bits (of 64) from wire tfx_mul_pipe.g_lane[7].x0.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[7].x1.
+Removed top 16 bits (of 64) from wire tfx_mul_pipe.g_lane[7].x2.
+
+4.11. Executing PEEPOPT pass (run peephole optimizers).
+
+4.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+Removed 0 unused cells and 198 unused wires.
+<suppressed ~1 debug messages>
+
+4.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module tfx_mul_pipe:
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$6954 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7001 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7048 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7095 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7142 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7189 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7236 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7283 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$6992 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7039 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7086 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7133 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7180 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7227 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7274 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7321 ($add).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$6948 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$6995 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7042 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7089 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7136 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7183 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7230 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7277 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$6949 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$6996 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7043 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7090 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7137 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7184 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7231 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7278 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$6950 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$6997 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7044 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7091 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7138 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7185 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7232 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7279 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$6951 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$6998 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7045 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7092 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7139 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7186 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7233 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7280 ($mul).
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7321.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7274.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7227.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7180.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7133.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7086.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7039.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$6992.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7283.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7236.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7189.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7142.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7095.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7048.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7001.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$6954.
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7278: $auto$alumacc.cc:365:replace_macc$7706
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7231: $auto$alumacc.cc:365:replace_macc$7707
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7184: $auto$alumacc.cc:365:replace_macc$7708
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7137: $auto$alumacc.cc:365:replace_macc$7709
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7090: $auto$alumacc.cc:365:replace_macc$7710
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$7043: $auto$alumacc.cc:365:replace_macc$7711
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$6996: $auto$alumacc.cc:365:replace_macc$7712
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:115$6949: $auto$alumacc.cc:365:replace_macc$7713
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7277: $auto$alumacc.cc:365:replace_macc$7714
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7230: $auto$alumacc.cc:365:replace_macc$7715
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7183: $auto$alumacc.cc:365:replace_macc$7716
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7136: $auto$alumacc.cc:365:replace_macc$7717
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7089: $auto$alumacc.cc:365:replace_macc$7718
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$7042: $auto$alumacc.cc:365:replace_macc$7719
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$6995: $auto$alumacc.cc:365:replace_macc$7720
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:114$6948: $auto$alumacc.cc:365:replace_macc$7721
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$6950: $auto$alumacc.cc:365:replace_macc$7722
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$6997: $auto$alumacc.cc:365:replace_macc$7723
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7044: $auto$alumacc.cc:365:replace_macc$7724
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7091: $auto$alumacc.cc:365:replace_macc$7725
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7138: $auto$alumacc.cc:365:replace_macc$7726
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7185: $auto$alumacc.cc:365:replace_macc$7727
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7232: $auto$alumacc.cc:365:replace_macc$7728
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:116$7279: $auto$alumacc.cc:365:replace_macc$7729
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$6951: $auto$alumacc.cc:365:replace_macc$7730
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$6998: $auto$alumacc.cc:365:replace_macc$7731
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7045: $auto$alumacc.cc:365:replace_macc$7732
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7092: $auto$alumacc.cc:365:replace_macc$7733
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7139: $auto$alumacc.cc:365:replace_macc$7734
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7186: $auto$alumacc.cc:365:replace_macc$7735
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7233: $auto$alumacc.cc:365:replace_macc$7736
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:117$7280: $auto$alumacc.cc:365:replace_macc$7737
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$6954: $auto$alumacc.cc:485:replace_alu$7738
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7001: $auto$alumacc.cc:485:replace_alu$7741
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7048: $auto$alumacc.cc:485:replace_alu$7744
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7095: $auto$alumacc.cc:485:replace_alu$7747
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7142: $auto$alumacc.cc:485:replace_alu$7750
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7189: $auto$alumacc.cc:485:replace_alu$7753
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7236: $auto$alumacc.cc:485:replace_alu$7756
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:118$7283: $auto$alumacc.cc:485:replace_alu$7759
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$6992: $auto$alumacc.cc:485:replace_alu$7762
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7039: $auto$alumacc.cc:485:replace_alu$7765
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7086: $auto$alumacc.cc:485:replace_alu$7768
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7133: $auto$alumacc.cc:485:replace_alu$7771
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7180: $auto$alumacc.cc:485:replace_alu$7774
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7227: $auto$alumacc.cc:485:replace_alu$7777
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7274: $auto$alumacc.cc:485:replace_alu$7780
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:149$7321: $auto$alumacc.cc:485:replace_alu$7783
+  created 16 $alu and 32 $macc cells.
+
+4.14. Executing SHARE pass (SAT-based resource sharing).
+
+4.15. Executing OPT pass (performing simple optimizations).
+
+4.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_mul_pipe..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~32 debug messages>
+
+4.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_mul_pipe.
+Performed a total of 0 changes.
+
+4.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.15.9. Finished OPT passes. (There is nothing left to do.)
+
+4.16. Executing MEMORY pass.
+
+4.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+4.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+4.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+4.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+4.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+4.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+4.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+4.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.18. Executing OPT pass (performing simple optimizations).
+
+4.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+<suppressed ~2208 debug messages>
+
+4.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+Removed 0 unused cells and 720 unused wires.
+<suppressed ~1 debug messages>
+
+4.18.5. Finished fast OPT passes.
+
+4.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+4.20. Executing OPT pass (performing simple optimizations).
+
+4.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_mul_pipe..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~32 debug messages>
+
+4.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_mul_pipe.
+    Consolidated identical input bits for $mux cell $ternary$/home/claude/CharanGPU/build/synth/charangpu.v:139$6959:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$6958_Y 32'11111111111111111111111111111111 }, Y=\g_lane[0].x4
+      New ports: A=33'000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$6958_Y 1'1 }, Y={ \g_lane[0].x4 [63:32] \g_lane[0].x4 [0] }
+      New connections: \g_lane[0].x4 [31:1] = { \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] \g_lane[0].x4 [0] }
+    Consolidated identical input bits for $mux cell $ternary$/home/claude/CharanGPU/build/synth/charangpu.v:139$7006:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7005_Y 32'11111111111111111111111111111111 }, Y=\g_lane[1].x4
+      New ports: A=33'000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7005_Y 1'1 }, Y={ \g_lane[1].x4 [63:32] \g_lane[1].x4 [0] }
+      New connections: \g_lane[1].x4 [31:1] = { \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] \g_lane[1].x4 [0] }
+    Consolidated identical input bits for $mux cell $ternary$/home/claude/CharanGPU/build/synth/charangpu.v:139$7053:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7052_Y 32'11111111111111111111111111111111 }, Y=\g_lane[2].x4
+      New ports: A=33'000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7052_Y 1'1 }, Y={ \g_lane[2].x4 [63:32] \g_lane[2].x4 [0] }
+      New connections: \g_lane[2].x4 [31:1] = { \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] \g_lane[2].x4 [0] }
+    Consolidated identical input bits for $mux cell $ternary$/home/claude/CharanGPU/build/synth/charangpu.v:139$7100:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7099_Y 32'11111111111111111111111111111111 }, Y=\g_lane[3].x4
+      New ports: A=33'000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7099_Y 1'1 }, Y={ \g_lane[3].x4 [63:32] \g_lane[3].x4 [0] }
+      New connections: \g_lane[3].x4 [31:1] = { \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] \g_lane[3].x4 [0] }
+    Consolidated identical input bits for $mux cell $ternary$/home/claude/CharanGPU/build/synth/charangpu.v:139$7147:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7146_Y 32'11111111111111111111111111111111 }, Y=\g_lane[4].x4
+      New ports: A=33'000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7146_Y 1'1 }, Y={ \g_lane[4].x4 [63:32] \g_lane[4].x4 [0] }
+      New connections: \g_lane[4].x4 [31:1] = { \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] \g_lane[4].x4 [0] }
+    Consolidated identical input bits for $mux cell $ternary$/home/claude/CharanGPU/build/synth/charangpu.v:139$7194:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7193_Y 32'11111111111111111111111111111111 }, Y=\g_lane[5].x4
+      New ports: A=33'000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7193_Y 1'1 }, Y={ \g_lane[5].x4 [63:32] \g_lane[5].x4 [0] }
+      New connections: \g_lane[5].x4 [31:1] = { \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] \g_lane[5].x4 [0] }
+    Consolidated identical input bits for $mux cell $ternary$/home/claude/CharanGPU/build/synth/charangpu.v:139$7241:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7240_Y 32'11111111111111111111111111111111 }, Y=\g_lane[6].x4
+      New ports: A=33'000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7240_Y 1'1 }, Y={ \g_lane[6].x4 [63:32] \g_lane[6].x4 [0] }
+      New connections: \g_lane[6].x4 [31:1] = { \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] \g_lane[6].x4 [0] }
+    Consolidated identical input bits for $mux cell $ternary$/home/claude/CharanGPU/build/synth/charangpu.v:139$7288:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7287_Y 32'11111111111111111111111111111111 }, Y=\g_lane[7].x4
+      New ports: A=33'000000000000000000000000000000000, B={ $not$/home/claude/CharanGPU/build/synth/charangpu.v:139$7287_Y 1'1 }, Y={ \g_lane[7].x4 [63:32] \g_lane[7].x4 [0] }
+      New connections: \g_lane[7].x4 [31:1] = { \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] \g_lane[7].x4 [0] }
+  Optimizing cells in module \tfx_mul_pipe.
+Performed a total of 8 changes.
+
+4.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.20.6. Executing OPT_SHARE pass.
+
+4.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.20.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.20.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_mul_pipe..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~32 debug messages>
+
+4.20.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_mul_pipe.
+Performed a total of 0 changes.
+
+4.20.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.20.14. Executing OPT_SHARE pass.
+
+4.20.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.20.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+
+4.20.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.20.18. Finished OPT passes. (There is nothing left to do.)
+
+4.21. Executing TECHMAP pass (map to technology primitives).
+
+4.21.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+4.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $xor.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper maccmap for cells of type $macc.
+  add \a_flat [239:224] * \b_flat [255:240] (16x16 bits, unsigned)
+Using extmapper simplemap for cells of type $sdff.
+  add \a_flat [31:16] * \b_flat [15:0] (16x16 bits, unsigned)
+  add \a_flat [239:224] * \b_flat [239:224] (16x16 bits, unsigned)
+  add \a_flat [63:48] * \b_flat [47:32] (16x16 bits, unsigned)
+  add \a_flat [63:48] * \b_flat [63:48] (16x16 bits, unsigned)
+Using extmapper simplemap for cells of type $mux.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$65b8cef5784a1953105b5f17b6b6438f555d7835\_90_alu for cells of type $alu.
+  add \a_flat [15:0] * \b_flat [15:0] (16x16 bits, unsigned)
+  add \a_flat [15:0] * \b_flat [31:16] (16x16 bits, unsigned)
+  add \a_flat [95:80] * \b_flat [79:64] (16x16 bits, unsigned)
+  add \a_flat [95:80] * \b_flat [95:80] (16x16 bits, unsigned)
+  add \a_flat [47:32] * \b_flat [47:32] (16x16 bits, unsigned)
+  add \a_flat [47:32] * \b_flat [63:48] (16x16 bits, unsigned)
+  add \a_flat [127:112] * \b_flat [111:96] (16x16 bits, unsigned)
+  add \a_flat [127:112] * \b_flat [127:112] (16x16 bits, unsigned)
+  add \a_flat [79:64] * \b_flat [79:64] (16x16 bits, unsigned)
+  add \a_flat [79:64] * \b_flat [95:80] (16x16 bits, unsigned)
+  add \a_flat [159:144] * \b_flat [143:128] (16x16 bits, unsigned)
+  add \a_flat [159:144] * \b_flat [159:144] (16x16 bits, unsigned)
+  add \a_flat [111:96] * \b_flat [111:96] (16x16 bits, unsigned)
+  add \a_flat [111:96] * \b_flat [127:112] (16x16 bits, unsigned)
+  add \a_flat [191:176] * \b_flat [175:160] (16x16 bits, unsigned)
+  add \a_flat [191:176] * \b_flat [191:176] (16x16 bits, unsigned)
+  add \a_flat [143:128] * \b_flat [143:128] (16x16 bits, unsigned)
+  add \a_flat [143:128] * \b_flat [159:144] (16x16 bits, unsigned)
+  add \a_flat [223:208] * \b_flat [207:192] (16x16 bits, unsigned)
+  add \a_flat [223:208] * \b_flat [223:208] (16x16 bits, unsigned)
+  add \a_flat [175:160] * \b_flat [175:160] (16x16 bits, unsigned)
+  add \a_flat [175:160] * \b_flat [191:176] (16x16 bits, unsigned)
+  add \a_flat [255:240] * \b_flat [239:224] (16x16 bits, unsigned)
+  add \a_flat [255:240] * \b_flat [255:240] (16x16 bits, unsigned)
+  add \a_flat [207:192] * \b_flat [207:192] (16x16 bits, unsigned)
+  add \a_flat [207:192] * \b_flat [223:208] (16x16 bits, unsigned)
+  add \a_flat [31:16] * \b_flat [31:16] (16x16 bits, unsigned)
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000000100000 for cells of type $fa.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000111110 for cells of type $lcu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~12294 debug messages>
+
+4.22. Executing OPT pass (performing simple optimizations).
+
+4.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+<suppressed ~47089 debug messages>
+
+4.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+<suppressed ~69 debug messages>
+Removed a total of 23 cells.
+
+4.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+Removed 2455 unused cells and 6481 unused wires.
+<suppressed ~2456 debug messages>
+
+4.22.5. Finished fast OPT passes.
+
+4.23. Executing ABC pass (technology mapping using ABC).
+
+4.23.1. Extracting gate netlist of module `\tfx_mul_pipe' to `<abc-temp-dir>/input.blif'..
+Extracted 62590 gates and 64387 wires to a netlist network with 1796 inputs and 1536 outputs.
+
+4.23.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+4.23.1.2. Re-integrating ABC results.
+ABC RESULTS:               MUX cells:      248
+ABC RESULTS:               NOT cells:     2112
+ABC RESULTS:               AND cells:     8525
+ABC RESULTS:              XNOR cells:     5751
+ABC RESULTS:                OR cells:     5759
+ABC RESULTS:              NAND cells:     3006
+ABC RESULTS:             ORNOT cells:     1617
+ABC RESULTS:               NOR cells:     3815
+ABC RESULTS:            ANDNOT cells:    18680
+ABC RESULTS:               XOR cells:    14326
+ABC RESULTS:        internal signals:    61055
+ABC RESULTS:           input signals:     1796
+ABC RESULTS:          output signals:     1536
+Removing temp directory.
+
+4.24. Executing OPT pass (performing simple optimizations).
+
+4.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_mul_pipe.
+
+4.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_mul_pipe'.
+Removed a total of 0 cells.
+
+4.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_mul_pipe..
+Removed 0 unused cells and 11729 unused wires.
+<suppressed ~17 debug messages>
+
+4.24.5. Finished fast OPT passes.
+
+4.25. Executing HIERARCHY pass (managing design hierarchy).
+
+4.25.1. Analyzing design hierarchy..
+Top module:  \tfx_mul_pipe
+
+4.25.2. Analyzing design hierarchy..
+Top module:  \tfx_mul_pipe
+Removed 0 unused modules.
+
+4.26. Printing statistics.
+
+=== tfx_mul_pipe ===
+
+   Number of wires:              62485
+   Number of wire bits:          72569
+   Number of public wires:         182
+   Number of public wire bits:   10266
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              65379
+     $_ANDNOT_                   18680
+     $_AND_                       8525
+     $_MUX_                        248
+     $_NAND_                      3006
+     $_NOR_                       3815
+     $_NOT_                       2112
+     $_ORNOT_                     1617
+     $_OR_                        5759
+     $_SDFF_PN0_                  1540
+     $_XNOR_                      5751
+     $_XOR_                      14326
+
+4.27. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_mul_pipe...
+Found and reported 0 problems.
+
+5. Printing statistics.
+
+=== tfx_mul_pipe ===
+
+   Number of wires:              62485
+   Number of wire bits:          72569
+   Number of public wires:         182
+   Number of public wire bits:   10266
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              65379
+     $_ANDNOT_                   18680
+     $_AND_                       8525
+     $_MUX_                        248
+     $_NAND_                      3006
+     $_NOR_                       3815
+     $_NOT_                       2112
+     $_ORNOT_                     1617
+     $_OR_                        5759
+     $_SDFF_PN0_                  1540
+     $_XNOR_                      5751
+     $_XOR_                      14326
+
+6. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_mul_pipe (length=35):
+    0: \b_flat [197]
+    1: $abc$125262$new_n26509_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148439)
+    2: $abc$125262$new_n26511_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148441)
+    3: $abc$125262$new_n26560_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148490)
+    4: $abc$125262$new_n26561_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148491)
+    5: $abc$125262$new_n26562_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148492)
+    6: $abc$125262$new_n26618_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148548)
+    7: $abc$125262$new_n26619_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148549)
+    8: $abc$125262$new_n26620_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148550)
+    9: $abc$125262$new_n26678_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148608)
+   10: $abc$125262$new_n26679_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148609)
+   11: $abc$125262$new_n26680_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148610)
+   12: $abc$125262$new_n26756_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148686)
+   13: $abc$125262$new_n26757_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148687)
+   14: $abc$125262$new_n26758_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148688)
+   15: $abc$125262$new_n26837_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148767)
+   16: $abc$125262$new_n26838_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148768)
+   17: $abc$125262$new_n26839_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148769)
+   18: $abc$125262$new_n26929_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148859)
+   19: $abc$125262$new_n26930_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148860)
+   20: $abc$125262$new_n26931_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148861)
+   21: $abc$125262$new_n27015_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148945)
+   22: $abc$125262$new_n27016_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$148946)
+   23: $abc$125262$new_n27199_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149129)
+   24: $abc$125262$new_n27200_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149130)
+   25: $abc$125262$new_n27203_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149133)
+   26: $abc$125262$new_n27206_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149136)
+   27: $abc$125262$new_n27781_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149711)
+   28: $abc$125262$new_n27782_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149712)
+   29: $abc$125262$new_n27952_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149882)
+   30: $abc$125262$new_n27953_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149883)
+   31: $abc$125262$new_n27998_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149928)
+   32: $abc$125262$new_n27999_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149929)
+   33: $abc$125262$new_n28009_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149939)
+   34: $abc$125262$new_n28010_ (via $abc$125262$auto$blifparse.cc:386:parse_blif$149940)
+   35: \g_lane[6].hl [31] (via $abc$125262$auto$blifparse.cc:386:parse_blif$149941)
+   ff: \r1_hl [223] (via $auto$ff.cc:266:slice$10286)
+
+End of script. Logfile hash: 2ad54d1d44, CPU: user 16.66s system 0.12s, MEM: 304.52 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 22% 20x opt_expr (4 sec), 20% 1x abc (4 sec), ...

@@ -1,0 +1,11 @@
+{
+  "name": "tfx_small",
+  "num_warps": 2,
+  "num_lanes": 4,
+  "imem_depth": 256,
+  "spm_words": 1024,
+  "spm_banks": 2,
+  "mul_latency": 2,
+  "stack_depth": 4,
+  "sched_policy": "lrr"
+}

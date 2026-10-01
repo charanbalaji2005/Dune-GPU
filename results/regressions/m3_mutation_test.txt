@@ -1,0 +1,8 @@
+[scoreboard: WAW check removed] -> DETECTED (fuzz mismatch): fuzz tfx_small seed=77: 13/25 programs agree (C++ func + C++ timing + RTL), 10359 simulated cycles, 11.7s
+[scoreboard: RAW on rs2 removed] -> DETECTED (fuzz mismatch): fuzz tfx_small seed=77: 16/25 programs agree (C++ func + C++ timing + RTL), 10359 simulated cycles, 10.7s
+[ALU: SLTU off-by-one] -> DETECTED (fuzz mismatch): fuzz tfx_small seed=77: 19/25 programs agree (C++ func + C++ timing + RTL), 10359 simulated cycles, 11.8s
+[MUL pipe: +1 of the MULH two's-complement correction dropped] -> DETECTED (fuzz mismatch): fuzz tfx_small seed=77: 12/25 programs agree (C++ func + C++ timing + RTL), 10359 simulated cycles, 11.1s
+[MUL pipe: last CSA carry not shifted] -> DETECTED (fuzz mismatch): fuzz tfx_small seed=77: 3/25 programs agree (C++ func + C++ timing + RTL), 10359 simulated cycles, 12.1s
+[branch-depth check disabled] -> DETECTED (directed test failure): directed tests: 1 failed, 5 passed in 0.66s
+[LSU: lane 3 store dropped (hangs or corrupts)] -> DETECTED (simulation error/hang):        Time: 30000045000  Scope: tb_charangpu_top
+mutation test: PASS (all mutants detected)

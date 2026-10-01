@@ -1,0 +1,13 @@
+3290c5c3e4935946c85d9c20cba89431  rtl/command_processor/tfx_command_processor.sv
+430c6a1f9f4557f462f6eddf89edc413  rtl/compute/tfx_simt_cluster.sv
+f77becf7bca26296fc3443fe23697b14  rtl/core/tfx_alu.sv
+5b78f110767b4d0a06b8b04ef1118688  rtl/core/tfx_compute_lane.sv
+b3dab3151798cf6473a781fd0002ca4f  rtl/core/tfx_decoder.sv
+c60f24573c641ee3ebf16a4a9d26af61  rtl/core/tfx_mul_pipe.sv
+79d4ea89ae18db2592718b6b205381e9  rtl/core/tfx_register_file.sv
+439373dccbb5bebecccf9c12844f105a  rtl/interconnect/tfx_fifo.sv
+c1acb10bd2dfd73a26b8b1eb79e11424  rtl/interconnect/tfx_token_channel.sv
+478966fab3f73bf3d5359db0ae93cbc7  rtl/memory/tfx_lsu.sv
+20deb0c809c94bca6cff4c738f037182  rtl/memory/tfx_scratchpad.sv
+38be720d1e2b9b7da71e246651fb9c9f  rtl/scheduler/tfx_warp_scheduler.sv
+0ace67c89a75d1dcd863801f0ed36ae1  rtl/top/charangpu_tfx_top.sv

@@ -1,0 +1,26 @@
+
+5. Printing statistics.
+
+=== tfx_lsu ===
+
+   Number of wires:              10491
+   Number of wire bits:          20042
+   Number of public wires:         296
+   Number of public wire bits:    9841
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              11447
+     $_ANDNOT_                    1250
+     $_AND_                         50
+     $_DFF_P_                       11
+     $_MUX_                       5991
+     $_NAND_                        80
+     $_NOR_                         93
+     $_NOT_                        877
+     $_ORNOT_                       88
+     $_OR_                        1592
+     $_SDFFE_PN0P_                 637
+     $_XNOR_                         5
+     $_XOR_                        773
+

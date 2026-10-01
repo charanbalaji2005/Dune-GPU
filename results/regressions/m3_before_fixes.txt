@@ -1,0 +1,7 @@
+FAILED tests/test_regressions_m3.py::test_assembler_rejects_branch_out_of_if
+FAILED tests/test_regressions_m3.py::test_assembler_rejects_then_body_jump_over_else
+FAILED tests/test_regressions_m3.py::test_assembler_rejects_jump_into_if_body
+FAILED tests/test_regressions_m3.py::test_assembler_accepts_structured_branches
+FAILED tests/test_regressions_m3.py::test_branch_depth_fault[tfx_base] - asse...
+FAILED tests/test_regressions_m3.py::test_branch_depth_fault[tfx_small] - ass...
+6 failed, 25 passed in 7.25s

@@ -1,0 +1,11 @@
+{
+  "name": "tfx_onebank",
+  "num_warps": 4,
+  "num_lanes": 8,
+  "imem_depth": 256,
+  "spm_words": 2048,
+  "spm_banks": 1,
+  "mul_latency": 3,
+  "stack_depth": 8,
+  "sched_policy": "lrr"
+}

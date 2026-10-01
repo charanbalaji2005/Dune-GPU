@@ -1,0 +1,31 @@
+
+5. Printing statistics.
+
+=== tfx_simt_cluster ===
+
+   Number of wires:             108381
+   Number of wire bits:         134867
+   Number of public wires:         890
+   Number of public wire bits:   26953
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:             122484
+     $_ANDNOT_                   14071
+     $_AND_                       1017
+     $_DFFE_PP_                  11328
+     $_DFF_P_                        9
+     $_MUX_                      50981
+     $_NAND_                      1380
+     $_NOR_                       7028
+     $_NOT_                      11303
+     $_ORNOT_                     2504
+     $_OR_                        9428
+     $_SDFFE_PN0N_                 218
+     $_SDFFE_PN0P_                1125
+     $_SDFFE_PN1P_                   1
+     $_SDFF_PN0_                   656
+     $_SDFF_PP0_                   256
+     $_XNOR_                      4635
+     $_XOR_                       6544
+

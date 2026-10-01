@@ -1,0 +1,858 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Running command `read_verilog /home/claude/CharanGPU/build/synth/charangpu.v; chparam -set NW 4 tfx_warp_scheduler; hierarchy -top tfx_warp_scheduler; synth -flatten -top tfx_warp_scheduler;         tee -o /home/claude/CharanGPU/results/synthesis/scheduler_4w.stat.txt stat; tee -o /home/claude/CharanGPU/results/synthesis/scheduler_4w.ltp.txt ltp -noff' --
+
+1. Executing Verilog-2005 frontend: /home/claude/CharanGPU/build/synth/charangpu.v
+Parsing Verilog input from `/home/claude/CharanGPU/build/synth/charangpu.v' to AST representation.
+Generating RTLIL representation for module `\tfx_alu'.
+Generating RTLIL representation for module `\tfx_mul_pipe'.
+Generating RTLIL representation for module `\tfx_decoder'.
+Generating RTLIL representation for module `\tfx_warp_scheduler'.
+Generating RTLIL representation for module `\tfx_scratchpad'.
+Generating RTLIL representation for module `\tfx_lsu'.
+Generating RTLIL representation for module `\tfx_simt_cluster'.
+Generating RTLIL representation for module `\tfx_command_processor'.
+Generating RTLIL representation for module `\tfx_fifo'.
+Generating RTLIL representation for module `\tfx_token_channel'.
+Generating RTLIL representation for module `\charangpu_tfx_top'.
+Successfully finished Verilog frontend.
+Parameter \NW = 4
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\tfx_warp_scheduler'.
+Parameter \NW = 4
+Generating RTLIL representation for module `$paramod\tfx_warp_scheduler\NW=32'00000000000000000000000000000100'.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1. Analyzing design hierarchy..
+Top module:  \tfx_warp_scheduler
+
+3.2. Analyzing design hierarchy..
+Top module:  \tfx_warp_scheduler
+Removing unused module `\charangpu_tfx_top'.
+Removing unused module `\tfx_token_channel'.
+Removing unused module `\tfx_fifo'.
+Removing unused module `\tfx_command_processor'.
+Removing unused module `\tfx_simt_cluster'.
+Removing unused module `\tfx_lsu'.
+Removing unused module `\tfx_scratchpad'.
+Removing unused module `\tfx_decoder'.
+Removing unused module `\tfx_mul_pipe'.
+Removing unused module `\tfx_alu'.
+Removed 10 unused modules.
+
+4. Executing SYNTH pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \tfx_warp_scheduler
+
+4.1.2. Analyzing design hierarchy..
+Top module:  \tfx_warp_scheduler
+Removed 0 unused modules.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+Cleaned up 1 empty switch.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 11 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958 in module tfx_warp_scheduler.
+Removed a total of 0 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 24 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~11 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+     1/67: $11\sel[1:0]
+     2/67: $10\found[0:0]
+     3/67: $10\sel[1:0]
+     4/67: $3\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6957.$result[1:0]$7038
+     5/67: $3\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6957.inp[1:0]$7039
+     6/67: $9\found[0:0]
+     7/67: $9\sel[1:0]
+     8/67: $3\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6955.$result[1:0]$7033
+     9/67: $3\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6955.inp[1:0]$7034
+    10/67: $8\found[0:0]
+    11/67: $8\sel[1:0]
+    12/67: $3\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6953.$result[1:0]$7028
+    13/67: $3\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6953.inp[1:0]$7029
+    14/67: $7\found[0:0]
+    15/67: $7\sel[1:0]
+    16/67: $3\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6951.$result[1:0]$7023
+    17/67: $3\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6951.inp[1:0]$7024
+    18/67: $6\found[0:0]
+    19/67: $6\sel[1:0]
+    20/67: $5\found[0:0]
+    21/67: $5\sel[1:0]
+    22/67: $4\found[0:0]
+    23/67: $4\sel[1:0]
+    24/67: $3\found[0:0]
+    25/67: $3\sel[1:0]
+    26/67: $2\sv2v_autoblock_1.i[31:0]
+    27/67: $2\found[0:0]
+    28/67: $2\sel[1:0]
+    29/67: $2\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6957.inp[1:0]$7019
+    30/67: $2\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6957.$result[1:0]$7018
+    31/67: $2\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6956.inp[31:0]$7017
+    32/67: $2\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6956.$result[31:0]$7016
+    33/67: $2\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6955.inp[1:0]$7015
+    34/67: $2\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6955.$result[1:0]$7014
+    35/67: $2\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6954.inp[31:0]$7013
+    36/67: $2\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6954.$result[31:0]$7012
+    37/67: $2\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6953.inp[1:0]$7011
+    38/67: $2\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6953.$result[1:0]$7010
+    39/67: $2\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6952.inp[31:0]$7009
+    40/67: $2\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6952.$result[31:0]$7008
+    41/67: $2\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6951.inp[1:0]$7007
+    42/67: $2\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6951.$result[1:0]$7006
+    43/67: $2\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6950.inp[31:0]$7005
+    44/67: $2\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6950.$result[31:0]$7004
+    45/67: $2\sv2v_autoblock_2.i[31:0]
+    46/67: $2\w[31:0]
+    47/67: $1\found[0:0]
+    48/67: $1\sel[1:0]
+    49/67: $1\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6957.inp[1:0]$7000
+    50/67: $1\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6957.$result[1:0]$6999
+    51/67: $1\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6956.inp[31:0]$6998
+    52/67: $1\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6956.$result[31:0]$6997
+    53/67: $1\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6955.inp[1:0]$6996
+    54/67: $1\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6955.$result[1:0]$6995
+    55/67: $1\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6954.inp[31:0]$6994
+    56/67: $1\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6954.$result[31:0]$6993
+    57/67: $1\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6953.inp[1:0]$6992
+    58/67: $1\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6953.$result[1:0]$6991
+    59/67: $1\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6952.inp[31:0]$6990
+    60/67: $1\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6952.$result[31:0]$6989
+    61/67: $1\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6951.inp[1:0]$6988
+    62/67: $1\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6951.$result[1:0]$6987
+    63/67: $1\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6950.inp[31:0]$6986
+    64/67: $1\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6950.$result[31:0]$6985
+    65/67: $1\sv2v_autoblock_2.i[31:0]
+    66/67: $1\sv2v_autoblock_1.i[31:0]
+    67/67: $1\w[31:0]
+Creating decoders for process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$7041'.
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\tfx_warp_scheduler.\valid' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sel' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\pool' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\found' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\w' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6950.$result' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6950.inp' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6951.$result' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6951.inp' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6952.$result' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6952.inp' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6953.$result' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6953.inp' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6954.$result' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6954.inp' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6955.$result' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6955.inp' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6956.$result' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_32_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:437$6956.inp' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6957.$result' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+No latch inferred for signal `\tfx_warp_scheduler.\sv2v_cast_93667_signed$func$/home/claude/CharanGPU/build/synth/charangpu.v:439$6957.inp' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+Latch inferred for signal `\tfx_warp_scheduler.\sv2v_autoblock_1.i' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958': $auto$proc_dlatch.cc:427:proc_dlatch$7480
+Latch inferred for signal `\tfx_warp_scheduler.\sv2v_autoblock_2.i' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958': $auto$proc_dlatch.cc:427:proc_dlatch$7505
+No latch inferred for signal `\tfx_warp_scheduler.\_sv2v_0' from process `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$7041'.
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 11 empty switches in `\tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+Removing empty process `tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:413$6958'.
+Removing empty process `tfx_warp_scheduler.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$7041'.
+Cleaned up 11 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+<suppressed ~23 debug messages>
+
+4.3. Executing FLATTEN pass (flatten design).
+
+4.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+<suppressed ~4 debug messages>
+
+4.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+Removed 91 unused cells and 355 unused wires.
+<suppressed ~99 debug messages>
+
+4.6. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_warp_scheduler...
+Found and reported 0 problems.
+
+4.7. Executing OPT pass (performing simple optimizations).
+
+4.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+4.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_warp_scheduler..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$7049.
+    dead port 1/2 on $mux $procmux$7052.
+    dead port 1/2 on $mux $procmux$7058.
+    dead port 1/2 on $mux $procmux$7061.
+    dead port 1/2 on $mux $procmux$7085.
+    dead port 1/2 on $mux $procmux$7088.
+    dead port 1/2 on $mux $procmux$7094.
+    dead port 1/2 on $mux $procmux$7097.
+    dead port 1/2 on $mux $procmux$7121.
+    dead port 1/2 on $mux $procmux$7124.
+    dead port 1/2 on $mux $procmux$7130.
+    dead port 1/2 on $mux $procmux$7133.
+    dead port 1/2 on $mux $procmux$7157.
+    dead port 1/2 on $mux $procmux$7160.
+    dead port 1/2 on $mux $procmux$7166.
+    dead port 1/2 on $mux $procmux$7169.
+    dead port 2/2 on $mux $procmux$7193.
+    dead port 1/2 on $mux $procmux$7196.
+    dead port 2/2 on $mux $procmux$7202.
+    dead port 1/2 on $mux $procmux$7205.
+    dead port 2/2 on $mux $procmux$7211.
+    dead port 1/2 on $mux $procmux$7214.
+    dead port 2/2 on $mux $procmux$7220.
+    dead port 1/2 on $mux $procmux$7223.
+    dead port 2/2 on $mux $procmux$7229.
+    dead port 1/2 on $mux $procmux$7232.
+    dead port 2/2 on $mux $procmux$7238.
+    dead port 1/2 on $mux $procmux$7241.
+    dead port 2/2 on $mux $procmux$7247.
+    dead port 1/2 on $mux $procmux$7250.
+    dead port 2/2 on $mux $procmux$7256.
+    dead port 1/2 on $mux $procmux$7259.
+    dead port 1/2 on $mux $procmux$7271.
+    dead port 1/2 on $mux $procmux$7277.
+Removed 34 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_warp_scheduler.
+Performed a total of 0 changes.
+
+4.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+Removed 0 unused cells and 36 unused wires.
+<suppressed ~1 debug messages>
+
+4.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_warp_scheduler..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_warp_scheduler.
+Performed a total of 0 changes.
+
+4.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.7.16. Finished OPT passes. (There is nothing left to do.)
+
+4.8. Executing FSM pass (extract and optimize FSM).
+
+4.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+4.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+4.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+4.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+4.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+4.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+4.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+4.9. Executing OPT pass (performing simple optimizations).
+
+4.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_warp_scheduler..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_warp_scheduler.
+Performed a total of 0 changes.
+
+4.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.9.9. Finished OPT passes. (There is nothing left to do.)
+
+4.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 2) from port B of cell tfx_warp_scheduler.$eq$/home/claude/CharanGPU/build/synth/charangpu.v:421$6982 ($eq).
+Removed top 29 bits (of 32) from port A of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add).
+Removed top 28 bits (of 32) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add).
+Converting cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add) from signed to unsigned.
+Removed top 27 bits (of 32) from port Y of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add).
+Removed top 1 bits (of 3) from port A of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add).
+Removed top 1 bits (of 4) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add).
+Removed top 3 bits (of 5) from port Y of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add).
+Removed top 2 bits (of 3) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add).
+Removed top 29 bits (of 32) from port B of cell tfx_warp_scheduler.$shiftx$/home/claude/CharanGPU/build/synth/charangpu.v:0$7022 ($shiftx).
+Removed top 29 bits (of 32) from port A of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025 ($add).
+Removed top 29 bits (of 32) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025 ($add).
+Converting cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025 ($add) from signed to unsigned.
+Removed top 28 bits (of 32) from port Y of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025 ($add).
+Removed top 1 bits (of 3) from port A of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025 ($add).
+Removed top 1 bits (of 3) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025 ($add).
+Removed top 2 bits (of 4) from port Y of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025 ($add).
+Removed top 29 bits (of 32) from port B of cell tfx_warp_scheduler.$shiftx$/home/claude/CharanGPU/build/synth/charangpu.v:0$7027 ($shiftx).
+Removed top 29 bits (of 32) from port A of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030 ($add).
+Removed top 29 bits (of 32) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030 ($add).
+Converting cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030 ($add) from signed to unsigned.
+Removed top 28 bits (of 32) from port Y of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030 ($add).
+Removed top 1 bits (of 3) from port A of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030 ($add).
+Removed top 1 bits (of 3) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030 ($add).
+Removed top 2 bits (of 4) from port Y of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030 ($add).
+Removed top 29 bits (of 32) from port B of cell tfx_warp_scheduler.$shiftx$/home/claude/CharanGPU/build/synth/charangpu.v:0$7032 ($shiftx).
+Removed top 29 bits (of 32) from port A of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035 ($add).
+Removed top 30 bits (of 32) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035 ($add).
+Converting cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035 ($add) from signed to unsigned.
+Removed top 28 bits (of 32) from port Y of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035 ($add).
+Removed top 1 bits (of 3) from port A of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035 ($add).
+Removed top 1 bits (of 2) from port B of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035 ($add).
+Removed top 2 bits (of 4) from port Y of cell tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035 ($add).
+Removed top 29 bits (of 32) from port B of cell tfx_warp_scheduler.$shiftx$/home/claude/CharanGPU/build/synth/charangpu.v:0$7037 ($shiftx).
+Removed top 30 bits (of 32) from wire tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020_Y.
+Removed top 30 bits (of 32) from wire tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025_Y.
+Removed top 30 bits (of 32) from wire tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030_Y.
+Removed top 30 bits (of 32) from wire tfx_warp_scheduler.$add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035_Y.
+
+4.11. Executing PEEPOPT pass (run peephole optimizers).
+
+4.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+Removed 0 unused cells and 4 unused wires.
+<suppressed ~1 debug messages>
+
+4.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module tfx_warp_scheduler:
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035 ($add).
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020.
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7020: $auto$alumacc.cc:485:replace_alu$7530
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7025: $auto$alumacc.cc:485:replace_alu$7533
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7030: $auto$alumacc.cc:485:replace_alu$7536
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:437$7035: $auto$alumacc.cc:485:replace_alu$7539
+  created 4 $alu and 0 $macc cells.
+
+4.14. Executing SHARE pass (SAT-based resource sharing).
+
+4.15. Executing OPT pass (performing simple optimizations).
+
+4.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+<suppressed ~5 debug messages>
+
+4.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_warp_scheduler..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_warp_scheduler.
+Performed a total of 0 changes.
+
+4.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+Removed 4 unused cells and 11 unused wires.
+<suppressed ~6 debug messages>
+
+4.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.15.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.15.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_warp_scheduler..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.15.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_warp_scheduler.
+Performed a total of 0 changes.
+
+4.15.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.15.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.15.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.15.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.15.16. Finished OPT passes. (There is nothing left to do.)
+
+4.16. Executing MEMORY pass.
+
+4.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+4.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+4.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+4.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+4.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+4.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+4.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+4.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.18. Executing OPT pass (performing simple optimizations).
+
+4.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+<suppressed ~10 debug messages>
+
+4.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+Removed 0 unused cells and 2 unused wires.
+<suppressed ~1 debug messages>
+
+4.18.5. Finished fast OPT passes.
+
+4.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+4.20. Executing OPT pass (performing simple optimizations).
+
+4.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_warp_scheduler..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_warp_scheduler.
+    Consolidated identical input bits for $mux cell $procmux$7254:
+      Old ports: A=2'00, B=2'11, Y=$3\sel[1:0]
+      New ports: A=1'0, B=1'1, Y=$3\sel[1:0] [0]
+      New connections: $3\sel[1:0] [1] = $3\sel[1:0] [0]
+  Optimizing cells in module \tfx_warp_scheduler.
+Performed a total of 1 changes.
+
+4.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.20.6. Executing OPT_SHARE pass.
+
+4.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+<suppressed ~1 debug messages>
+
+4.20.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.20.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_warp_scheduler..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.20.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_warp_scheduler.
+Performed a total of 0 changes.
+
+4.20.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.20.14. Executing OPT_SHARE pass.
+
+4.20.15. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.20.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+4.20.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.20.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.20.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_warp_scheduler..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~3 debug messages>
+
+4.20.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_warp_scheduler.
+Performed a total of 0 changes.
+
+4.20.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.20.22. Executing OPT_SHARE pass.
+
+4.20.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.20.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+
+4.20.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+
+4.20.26. Finished OPT passes. (There is nothing left to do.)
+
+4.21. Executing TECHMAP pass (map to technology primitives).
+
+4.21.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+4.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $logic_and.
+Using template $paramod$constmap:1ef046be63c9541309f2f19c4ef998a798f64488$paramod$7fe1424d9d826b3a6286885bc851fafa5143be2b\_90_shift_shiftx for cells of type $shiftx.
+Using extmapper simplemap for cells of type $logic_or.
+Using template $paramod$7e708ae28ab761f11d0fb59d3ffc72f6a4baf5d9\_90_alu for cells of type $alu.
+Using template $paramod$constmap:b486ae313fe5b917885e14fe966852512ebdbb83$paramod$4a9668f7e2c7c2af552980dad1b48191d692468c\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod$fc972a7a46956c1788f3cb5257b53c8f1df2d0cc\_90_alu for cells of type $alu.
+Using template $paramod$175e67c02b86e96b1288b9dc100122520d7240d8\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000010 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000001 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~676 debug messages>
+
+4.22. Executing OPT pass (performing simple optimizations).
+
+4.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+<suppressed ~78 debug messages>
+
+4.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+<suppressed ~51 debug messages>
+Removed a total of 17 cells.
+
+4.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+Removed 24 unused cells and 131 unused wires.
+<suppressed ~25 debug messages>
+
+4.22.5. Finished fast OPT passes.
+
+4.23. Executing ABC pass (technology mapping using ABC).
+
+4.23.1. Extracting gate netlist of module `\tfx_warp_scheduler' to `<abc-temp-dir>/input.blif'..
+Extracted 68 gates and 82 wires to a netlist network with 12 inputs and 3 outputs.
+
+4.23.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+4.23.1.2. Re-integrating ABC results.
+ABC RESULTS:              NAND cells:        2
+ABC RESULTS:               XOR cells:        1
+ABC RESULTS:               NOT cells:       12
+ABC RESULTS:              XNOR cells:        2
+ABC RESULTS:             ORNOT cells:        2
+ABC RESULTS:               AND cells:        4
+ABC RESULTS:                OR cells:       14
+ABC RESULTS:               MUX cells:       30
+ABC RESULTS:            ANDNOT cells:        9
+ABC RESULTS:        internal signals:       67
+ABC RESULTS:           input signals:       12
+ABC RESULTS:          output signals:        3
+Removing temp directory.
+
+4.24. Executing OPT pass (performing simple optimizations).
+
+4.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_warp_scheduler.
+<suppressed ~4 debug messages>
+
+4.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_warp_scheduler'.
+Removed a total of 0 cells.
+
+4.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_warp_scheduler..
+Removed 0 unused cells and 59 unused wires.
+<suppressed ~3 debug messages>
+
+4.24.5. Finished fast OPT passes.
+
+4.25. Executing HIERARCHY pass (managing design hierarchy).
+
+4.25.1. Analyzing design hierarchy..
+Top module:  \tfx_warp_scheduler
+
+4.25.2. Analyzing design hierarchy..
+Top module:  \tfx_warp_scheduler
+Removed 0 unused modules.
+
+4.26. Printing statistics.
+
+=== tfx_warp_scheduler ===
+
+   Number of wires:                 88
+   Number of wire bits:            225
+   Number of public wires:          15
+   Number of public wire bits:     152
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 76
+     $_ANDNOT_                       9
+     $_AND_                          4
+     $_MUX_                         30
+     $_NAND_                         2
+     $_NOT_                         12
+     $_ORNOT_                        2
+     $_OR_                          14
+     $_XNOR_                         2
+     $_XOR_                          1
+
+4.27. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_warp_scheduler...
+Found and reported 0 problems.
+
+5. Printing statistics.
+
+=== tfx_warp_scheduler ===
+
+   Number of wires:                 88
+   Number of wire bits:            225
+   Number of public wires:          15
+   Number of public wire bits:     152
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 76
+     $_ANDNOT_                       9
+     $_AND_                          4
+     $_MUX_                         30
+     $_NAND_                         2
+     $_NOT_                         12
+     $_ORNOT_                        2
+     $_OR_                          14
+     $_XNOR_                         2
+     $_XOR_                          1
+
+6. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_warp_scheduler (length=14):
+    0: \is_mem [3]
+    1: $abc$7886$new_n27_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7898)
+    2: $abc$7886$new_n28_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7899)
+    3: $abc$7886$new_n29_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7900)
+    4: $abc$7886$new_n30_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7901)
+    5: $abc$7886$new_n41_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7912)
+    6: $abc$7886$new_n42_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7913)
+    7: $abc$7886$new_n43_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7914)
+    8: $abc$7886$new_n82_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7953)
+    9: $abc$7886$new_n83_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7954)
+   10: $abc$7886$new_n84_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7955)
+   11: $abc$7886$new_n85_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7956)
+   12: $abc$7886$new_n89_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7960)
+   13: $abc$7886$new_n90_ (via $abc$7886$auto$blifparse.cc:386:parse_blif$7961)
+   14: \sel [1] (via $abc$7886$auto$blifparse.cc:386:parse_blif$7962)
+
+End of script. Logfile hash: 6b5b5bc6cc, CPU: user 0.87s system 0.02s, MEM: 65.11 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 70% 3x read_verilog (0 sec), 6% 1x abc (0 sec), ...

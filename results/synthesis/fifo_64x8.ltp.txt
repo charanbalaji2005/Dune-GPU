@@ -1,0 +1,15 @@
+6. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_fifo (length=10):
+    0: \count [3]
+    1: $abc$8604$new_n624_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$8610)
+    2: \full (via $abc$8604$auto$blifparse.cc:386:parse_blif$8611)
+    3: \do_push (via $abc$8604$auto$blifparse.cc:386:parse_blif$8612)
+    4: $abc$8604$new_n1180_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9166)
+    5: $abc$8604$new_n1181_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9167)
+    6: $abc$8604$new_n1185_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9171)
+    7: $abc$8604$new_n1186_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9172)
+    8: $abc$8604$new_n1190_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9176)
+    9: $abc$8604$new_n1191_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9177)
+   10: $auto$alumacc.cc:485:replace_alu$7119.Y [3] (via $abc$8604$auto$blifparse.cc:386:parse_blif$9178)
+   ff: \count [3] (via $auto$ff.cc:266:slice$7551)

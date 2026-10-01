@@ -1,0 +1,697 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Running command `read_verilog /home/claude/CharanGPU/build/synth/charangpu.v;  hierarchy -top tfx_alu; synth -flatten -top tfx_alu;         tee -o /home/claude/CharanGPU/results/synthesis/alu.stat.txt stat; tee -o /home/claude/CharanGPU/results/synthesis/alu.ltp.txt ltp -noff' --
+
+1. Executing Verilog-2005 frontend: /home/claude/CharanGPU/build/synth/charangpu.v
+Parsing Verilog input from `/home/claude/CharanGPU/build/synth/charangpu.v' to AST representation.
+Generating RTLIL representation for module `\tfx_alu'.
+Generating RTLIL representation for module `\tfx_mul_pipe'.
+Generating RTLIL representation for module `\tfx_decoder'.
+Generating RTLIL representation for module `\tfx_warp_scheduler'.
+Generating RTLIL representation for module `\tfx_scratchpad'.
+Generating RTLIL representation for module `\tfx_lsu'.
+Generating RTLIL representation for module `\tfx_simt_cluster'.
+Generating RTLIL representation for module `\tfx_command_processor'.
+Generating RTLIL representation for module `\tfx_fifo'.
+Generating RTLIL representation for module `\tfx_token_channel'.
+Generating RTLIL representation for module `\charangpu_tfx_top'.
+Successfully finished Verilog frontend.
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+
+2.1. Analyzing design hierarchy..
+Top module:  \tfx_alu
+
+2.2. Analyzing design hierarchy..
+Top module:  \tfx_alu
+Removing unused module `\charangpu_tfx_top'.
+Removing unused module `\tfx_token_channel'.
+Removing unused module `\tfx_fifo'.
+Removing unused module `\tfx_command_processor'.
+Removing unused module `\tfx_simt_cluster'.
+Removing unused module `\tfx_lsu'.
+Removing unused module `\tfx_scratchpad'.
+Removing unused module `\tfx_warp_scheduler'.
+Removing unused module `\tfx_decoder'.
+Removing unused module `\tfx_mul_pipe'.
+Removed 10 unused modules.
+
+3. Executing SYNTH pass.
+
+3.1. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1.1. Analyzing design hierarchy..
+Top module:  \tfx_alu
+
+3.1.2. Analyzing design hierarchy..
+Top module:  \tfx_alu
+Removed 0 unused modules.
+
+3.2. Executing PROC pass (convert processes to netlists).
+
+3.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:53$30'.
+Cleaned up 1 empty switch.
+
+3.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:53$30 in module tfx_alu.
+Removed a total of 0 dead cases.
+
+3.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 0 redundant assignments.
+Promoted 3 assignments to connections.
+
+3.2.4. Executing PROC_INIT pass (extract init attributes).
+
+3.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+3.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~1 debug messages>
+
+3.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$43'.
+Creating decoders for process `\tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:53$30'.
+     1/2: $1\result[31:0]
+     2/2: $1\illegal_opcode[0:0]
+
+3.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\tfx_alu.\_sv2v_0' from process `\tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$43'.
+No latch inferred for signal `\tfx_alu.\result' from process `\tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:53$30'.
+No latch inferred for signal `\tfx_alu.\illegal_opcode' from process `\tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:53$30'.
+
+3.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+
+3.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+3.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:0$43'.
+Found and cleaned up 1 empty switch in `\tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:53$30'.
+Removing empty process `tfx_alu.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:53$30'.
+Cleaned up 1 empty switch.
+
+3.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+<suppressed ~3 debug messages>
+
+3.3. Executing FLATTEN pass (flatten design).
+
+3.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+Removed 0 unused cells and 12 unused wires.
+<suppressed ~1 debug messages>
+
+3.6. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_alu...
+Found and reported 0 problems.
+
+3.7. Executing OPT pass (performing simple optimizations).
+
+3.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+<suppressed ~45 debug messages>
+Removed a total of 15 cells.
+
+3.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+3.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_alu.
+    New ctrl vector for $pmux cell $procmux$6964: $auto$opt_reduce.cc:134:opt_pmux$6981
+  Optimizing cells in module \tfx_alu.
+Performed a total of 1 changes.
+
+3.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+Removed 0 unused cells and 15 unused wires.
+<suppressed ~1 debug messages>
+
+3.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+3.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_alu.
+Performed a total of 0 changes.
+
+3.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.7.16. Finished OPT passes. (There is nothing left to do.)
+
+3.8. Executing FSM pass (extract and optimize FSM).
+
+3.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+3.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+3.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+3.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+3.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+3.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+3.9. Executing OPT pass (performing simple optimizations).
+
+3.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+3.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_alu.
+Performed a total of 0 changes.
+
+3.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.9.9. Finished OPT passes. (There is nothing left to do.)
+
+3.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 32 bits (of 64) from port A of cell tfx_alu.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:39$41 ($mul).
+Removed top 32 bits (of 64) from port B of cell tfx_alu.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:39$41 ($mul).
+Removed top 32 bits (of 64) from port A of cell tfx_alu.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:40$42 ($mul).
+Removed top 32 bits (of 64) from port B of cell tfx_alu.$mul$/home/claude/CharanGPU/build/synth/charangpu.v:40$42 ($mul).
+Removed top 3 bits (of 4) from port B of cell tfx_alu.$procmux$6961_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell tfx_alu.$procmux$6960_CMP0 ($eq).
+Removed top 2 bits (of 4) from port B of cell tfx_alu.$procmux$6959_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell tfx_alu.$procmux$6958_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell tfx_alu.$procmux$6957_CMP0 ($eq).
+Removed top 1 bits (of 4) from port B of cell tfx_alu.$procmux$6956_CMP0 ($eq).
+
+3.11. Executing PEEPOPT pass (run peephole optimizers).
+
+3.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module tfx_alu:
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:59$31 ($add).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:39$41 ($mul).
+  creating $macc model for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:40$42 ($mul).
+  creating $macc model for $sub$/home/claude/CharanGPU/build/synth/charangpu.v:60$32 ($sub).
+  creating $alu model for $macc $sub$/home/claude/CharanGPU/build/synth/charangpu.v:60$32.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:59$31.
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:39$41: $auto$alumacc.cc:365:replace_macc$6982
+  creating $macc cell for $mul$/home/claude/CharanGPU/build/synth/charangpu.v:40$42: $auto$alumacc.cc:365:replace_macc$6983
+  creating $alu model for $lt$/home/claude/CharanGPU/build/synth/charangpu.v:52$29 ($lt): new $alu
+  creating $alu model for $lt$/home/claude/CharanGPU/build/synth/charangpu.v:70$38 ($lt): merged with $sub$/home/claude/CharanGPU/build/synth/charangpu.v:60$32.
+  creating $alu model for $eq$/home/claude/CharanGPU/build/synth/charangpu.v:71$39 ($eq): merged with $sub$/home/claude/CharanGPU/build/synth/charangpu.v:60$32.
+  creating $alu cell for $lt$/home/claude/CharanGPU/build/synth/charangpu.v:52$29: $auto$alumacc.cc:485:replace_alu$6985
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:59$31: $auto$alumacc.cc:485:replace_alu$6992
+  creating $alu cell for $sub$/home/claude/CharanGPU/build/synth/charangpu.v:60$32, $lt$/home/claude/CharanGPU/build/synth/charangpu.v:70$38, $eq$/home/claude/CharanGPU/build/synth/charangpu.v:71$39: $auto$alumacc.cc:485:replace_alu$6995
+  created 3 $alu and 2 $macc cells.
+
+3.14. Executing SHARE pass (SAT-based resource sharing).
+Found 3 cells in module tfx_alu that may be considered for resource sharing.
+  Analyzing resource sharing options for $sshr$/home/claude/CharanGPU/build/synth/charangpu.v:51$28 ($sshr):
+    Found 1 activation_patterns using ctrl signal $procmux$6953_CMP.
+    No candidates found.
+  Analyzing resource sharing options for $shr$/home/claude/CharanGPU/build/synth/charangpu.v:67$37 ($shr):
+    Found 1 activation_patterns using ctrl signal $procmux$6954_CMP.
+    No candidates found.
+  Analyzing resource sharing options for $shl$/home/claude/CharanGPU/build/synth/charangpu.v:66$36 ($shl):
+    Found 1 activation_patterns using ctrl signal $procmux$6955_CMP.
+    No candidates found.
+
+3.15. Executing OPT pass (performing simple optimizations).
+
+3.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+3.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_alu.
+Performed a total of 0 changes.
+
+3.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+Removed 0 unused cells and 3 unused wires.
+<suppressed ~1 debug messages>
+
+3.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.15.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+3.15.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+3.15.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_alu.
+Performed a total of 0 changes.
+
+3.15.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.15.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.15.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.15.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.15.16. Finished OPT passes. (There is nothing left to do.)
+
+3.16. Executing MEMORY pass.
+
+3.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+3.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+3.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+3.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+3.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+3.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+3.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+3.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+3.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.18. Executing OPT pass (performing simple optimizations).
+
+3.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+<suppressed ~1 debug messages>
+
+3.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.18.5. Finished fast OPT passes.
+
+3.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+3.20. Executing OPT pass (performing simple optimizations).
+
+3.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_alu..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~1 debug messages>
+
+3.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_alu.
+Performed a total of 0 changes.
+
+3.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+Removed a total of 0 cells.
+
+3.20.6. Executing OPT_SHARE pass.
+
+3.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+
+3.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+
+3.20.10. Finished OPT passes. (There is nothing left to do.)
+
+3.21. Executing TECHMAP pass (map to technology primitives).
+
+3.21.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+3.21.2. Continuing TECHMAP pass.
+Using template $paramod$constmap:4621fcf06a436d1e2a4080e2ed9866a7d07a6e07$paramod$e765c459d3029c22a22a27989e94858fd9ebfa9c\_90_shift_ops_shr_shl_sshl_sshr for cells of type $sshr.
+Using template $paramod$fbc7873bff55778c0b3173955b7e4bce1d9d6834\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $or.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod$constmap:4621fcf06a436d1e2a4080e2ed9866a7d07a6e07$paramod$335cfd09f1afa8139c4aafcbbe5f361887b79c5e\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shl.
+Using template $paramod$constmap:4621fcf06a436d1e2a4080e2ed9866a7d07a6e07$paramod$feecc7a0dbd012970970f2858f15e786e251f677\_90_shift_ops_shr_shl_sshl_sshr for cells of type $shr.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper maccmap for cells of type $macc.
+  add \operand_a * \operand_b (32x32 bits, signed)
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $not.
+Using template $paramod$2653f68ddb8eab7b1907b4a20767b72a824a7a36\_90_alu for cells of type $alu.
+  add \operand_a * \operand_b (32x32 bits, unsigned)
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$7f1d45a92d0221fa6c256845bf4513df30042923\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000100000 for cells of type $lcu.
+Using template $paramod\_90_fa\WIDTH=32'00000000000000000000000001000000 for cells of type $fa.
+Using template $paramod$039520c137afc9cd69dd56c3fb11a4e1fbe5f664\_90_alu for cells of type $alu.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000001000000 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~3256 debug messages>
+
+3.22. Executing OPT pass (performing simple optimizations).
+
+3.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+<suppressed ~9339 debug messages>
+
+3.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+<suppressed ~11280 debug messages>
+Removed a total of 3760 cells.
+
+3.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+Removed 281 unused cells and 1220 unused wires.
+<suppressed ~282 debug messages>
+
+3.22.5. Finished fast OPT passes.
+
+3.23. Executing ABC pass (technology mapping using ABC).
+
+3.23.1. Extracting gate netlist of module `\tfx_alu' to `<abc-temp-dir>/input.blif'..
+Extracted 14191 gates and 14260 wires to a netlist network with 68 inputs and 34 outputs.
+
+3.23.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+3.23.1.2. Re-integrating ABC results.
+ABC RESULTS:               NOT cells:      359
+ABC RESULTS:              NAND cells:      508
+ABC RESULTS:               MUX cells:      311
+ABC RESULTS:               AND cells:     1077
+ABC RESULTS:              XNOR cells:     1329
+ABC RESULTS:               XOR cells:     3272
+ABC RESULTS:               NOR cells:      484
+ABC RESULTS:             ORNOT cells:      694
+ABC RESULTS:                OR cells:     1680
+ABC RESULTS:            ANDNOT cells:     4740
+ABC RESULTS:        internal signals:    14158
+ABC RESULTS:           input signals:       68
+ABC RESULTS:          output signals:       34
+Removing temp directory.
+
+3.24. Executing OPT pass (performing simple optimizations).
+
+3.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_alu.
+<suppressed ~120 debug messages>
+
+3.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_alu'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+3.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+3.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_alu..
+Removed 3 unused cells and 1188 unused wires.
+<suppressed ~10 debug messages>
+
+3.24.5. Finished fast OPT passes.
+
+3.25. Executing HIERARCHY pass (managing design hierarchy).
+
+3.25.1. Analyzing design hierarchy..
+Top module:  \tfx_alu
+
+3.25.2. Analyzing design hierarchy..
+Top module:  \tfx_alu
+Removed 0 unused modules.
+
+3.26. Printing statistics.
+
+=== tfx_alu ===
+
+   Number of wires:              14425
+   Number of wire bits:          14556
+   Number of public wires:           9
+   Number of public wire bits:     140
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              14450
+     $_ANDNOT_                    4740
+     $_AND_                       1077
+     $_MUX_                        311
+     $_NAND_                       508
+     $_NOR_                        484
+     $_NOT_                        356
+     $_ORNOT_                      694
+     $_OR_                        1679
+     $_XNOR_                      1329
+     $_XOR_                       3272
+
+3.27. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_alu...
+Found and reported 0 problems.
+
+4. Printing statistics.
+
+=== tfx_alu ===
+
+   Number of wires:              14425
+   Number of wire bits:          14556
+   Number of public wires:           9
+   Number of public wire bits:     140
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              14450
+     $_ANDNOT_                    4740
+     $_AND_                       1077
+     $_MUX_                        311
+     $_NAND_                       508
+     $_NOR_                        484
+     $_NOT_                        356
+     $_ORNOT_                      694
+     $_OR_                        1679
+     $_XNOR_                      1329
+     $_XOR_                       3272
+
+5. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_alu (length=53):
+    0: \operand_b [31]
+    1: $abc$36788$new_n6309_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$42995)
+    2: $abc$36788$new_n6311_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$42997)
+    3: $abc$36788$new_n6725_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$43411)
+    4: $abc$36788$new_n6726_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$43412)
+    5: $abc$36788$new_n6727_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$43413)
+    6: $abc$36788$new_n7134_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$43820)
+    7: $abc$36788$new_n7135_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$43821)
+    8: $abc$36788$new_n7136_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$43822)
+    9: $abc$36788$new_n7541_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$44227)
+   10: $abc$36788$new_n7542_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$44228)
+   11: $abc$36788$new_n7543_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$44229)
+   12: $abc$36788$new_n7965_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$44651)
+   13: $abc$36788$new_n7966_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$44652)
+   14: $abc$36788$new_n7967_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$44653)
+   15: $abc$36788$new_n8377_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45063)
+   16: $abc$36788$new_n8378_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45064)
+   17: $abc$36788$new_n8379_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45065)
+   18: $abc$36788$new_n8780_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45466)
+   19: $abc$36788$new_n8781_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45467)
+   20: $abc$36788$new_n8782_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45468)
+   21: $abc$36788$new_n9126_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45812)
+   22: $abc$36788$new_n9127_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45813)
+   23: $abc$36788$new_n9128_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$45814)
+   24: $abc$36788$new_n9479_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$46165)
+   25: $abc$36788$new_n9480_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$46166)
+   26: $abc$36788$new_n9481_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$46167)
+   27: $abc$36788$new_n9805_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$46491)
+   28: $abc$36788$new_n9806_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$46492)
+   29: $abc$36788$new_n10437_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$47123)
+   30: $abc$36788$new_n10438_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$47124)
+   31: $abc$36788$new_n11586_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$48272)
+   32: $abc$36788$new_n11587_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$48273)
+   33: $abc$36788$new_n11590_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$48276)
+   34: $abc$36788$new_n11593_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$48279)
+   35: $abc$36788$new_n13377_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$50063)
+   36: $abc$36788$new_n13378_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$50064)
+   37: $abc$36788$new_n14055_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$50741)
+   38: $abc$36788$new_n14056_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$50742)
+   39: $abc$36788$new_n14337_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51023)
+   40: $abc$36788$new_n14338_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51024)
+   41: $abc$36788$new_n14456_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51142)
+   42: $abc$36788$new_n14457_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51143)
+   43: $abc$36788$new_n14458_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51144)
+   44: $abc$36788$new_n14459_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51145)
+   45: $abc$36788$new_n14478_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51164)
+   46: $abc$36788$new_n14490_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51176)
+   47: $abc$36788$new_n14512_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51198)
+   48: \result [31] (via $abc$36788$auto$blifparse.cc:386:parse_blif$51199)
+   49: $abc$36788$new_n14540_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51226)
+   50: $abc$36788$new_n14541_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51227)
+   51: $abc$36788$new_n14542_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51228)
+   52: $abc$36788$new_n14543_ (via $abc$36788$auto$blifparse.cc:386:parse_blif$51229)
+   53: \zero (via $abc$36788$auto$blifparse.cc:386:parse_blif$51230)
+
+End of script. Logfile hash: 504bd4c1e1, CPU: user 4.77s system 0.05s, MEM: 82.06 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 20% 25x opt_expr (1 sec), 19% 15x opt_merge (1 sec), ...

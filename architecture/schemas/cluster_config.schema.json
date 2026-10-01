@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://charangpu.local/schemas/cluster_config.schema.json",
+  "title": "CharanGPU TFX-X SIMT cluster configuration",
+  "description": "Parameters shared by the C++ simulator (simulator/include/tfx_config.hpp) and the RTL (tfx_simt_cluster parameters). Validated by tools/configuration/validate_config.py.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "num_warps",
+    "num_lanes",
+    "imem_depth",
+    "spm_words",
+    "spm_banks",
+    "mul_latency",
+    "stack_depth"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_\\-]+$"
+    },
+    "num_warps": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 8,
+      "description": "resident warps (RTL NW)"
+    },
+    "num_lanes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 32,
+      "description": "lanes per warp (RTL NL)"
+    },
+    "imem_depth": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 65536,
+      "powerOfTwo": true,
+      "description": "instruction words"
+    },
+    "spm_words": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 1048576,
+      "powerOfTwo": true,
+      "description": "scratchpad words (32-bit)"
+    },
+    "spm_banks": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 32,
+      "powerOfTwo": true,
+      "description": "scratchpad banks; bank = word_addr % banks"
+    },
+    "mul_latency": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 8,
+      "description": "cycles from dispatch to MUL writeback"
+    },
+    "stack_depth": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16,
+      "description": "per-warp divergence (mask) stack entries"
+    },
+    "sched_policy": {
+      "type": "string",
+      "enum": [
+        "lrr",
+        "gto",
+        "prio",
+        "memfirst"
+      ],
+      "description": "default warp scheduler policy"
+    },
+    "l1_enable": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "1 enables the SIMULATION-ONLY L1 data-cache model in the C++ cycle simulator (no RTL)"
+    },
+    "l1_size_bytes": {
+      "type": "integer",
+      "minimum": 8,
+      "maximum": 1048576,
+      "powerOfTwo": true
+    },
+    "l1_line_bytes": {
+      "type": "integer",
+      "minimum": 4,
+      "maximum": 4096,
+      "powerOfTwo": true
+    },
+    "l1_assoc": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "l1_policy": {
+      "type": "string",
+      "enum": [
+        "lru",
+        "fifo",
+        "random"
+      ]
+    },
+    "l1_hit_latency": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "l1_miss_latency": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4096
+    },
+    "l1_seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 2147483647
+    }
+  }
+}

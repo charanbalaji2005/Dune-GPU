@@ -1,0 +1,19 @@
+{
+  "name": "tfx_base_l1",
+  "num_warps": 4,
+  "num_lanes": 8,
+  "imem_depth": 256,
+  "spm_words": 2048,
+  "spm_banks": 8,
+  "mul_latency": 3,
+  "stack_depth": 8,
+  "sched_policy": "lrr",
+  "l1_enable": 1,
+  "l1_size_bytes": 1024,
+  "l1_line_bytes": 32,
+  "l1_assoc": 2,
+  "l1_policy": "lru",
+  "l1_hit_latency": 1,
+  "l1_miss_latency": 20,
+  "l1_seed": 1
+}

@@ -1,0 +1,105 @@
+; raster.tfx -- compute-shader triangle rasterizer (one pixel per thread,
+; grid-stride). For every pixel centre it evaluates the three edge functions
+; of every triangle (Q4 sub-pixel coordinates), keeps the nearest covering
+; triangle (per-triangle constant depth, smaller = nearer), then applies a
+; procedural 4x4 checker "texture" by halving the colour on odd cells.
+; Triangle record (8 words): x0 y0 x1 y1 x2 y2 colour depth; winding must give
+; non-negative edge functions inside (host normalises).
+;   arg0 = &framebuffer  arg1 = W*H  arg2 = log2(W)  arg3 = &triangles
+;   arg4 = triangle count  arg5 = background colour
+        s2r   r1, global_tid
+        s2r   r2, num_lanes
+        s2r   r3, num_warps
+        mul   r4, r2, r3
+        s2r   r10, arg0
+        s2r   r11, arg1
+        s2r   r12, arg2
+        s2r   r13, arg3
+        s2r   r14, arg4
+        s2r   r15, arg5
+        movi  r16, 1
+        sll   r16, r16, r12
+        subi  r16, r16, 1         ; W-1
+        mov   r6, r1
+pix:
+        slt   r7, r6, r11
+        bnone r7, done
+        if    r7
+          and   r17, r6, r16      ; x
+          srl   r18, r6, r12      ; y
+          slli  r19, r17, 4
+          addi  r19, r19, 8       ; px (Q4, pixel centre)
+          slli  r20, r18, 4
+          addi  r20, r20, 8       ; py
+          li    r21, 0x7fffffff   ; nearest depth so far
+          mov   r22, r15          ; colour
+          mov   r23, r13          ; triangle pointer
+          movi  r24, 0            ; t
+tri:
+          slt   r25, r24, r14
+          bnone r25, tri_done     ; uniform
+          lw    r26, 0(r23)       ; x0
+          lw    r27, 4(r23)       ; y0
+          lw    r28, 8(r23)       ; x1
+          lw    r29, 12(r23)      ; y1
+          sub   r30, r19, r26     ; e01 = (px-x0)(y1-y0) - (py-y0)(x1-x0)
+          sub   r31, r29, r27
+          mul   r30, r30, r31
+          sub   r31, r20, r27
+          sub   r9, r28, r26
+          mul   r31, r31, r9
+          sub   r8, r30, r31
+          lw    r26, 16(r23)      ; x2
+          lw    r27, 20(r23)      ; y2
+          sub   r30, r19, r28     ; e12 = (px-x1)(y2-y1) - (py-y1)(x2-x1)
+          sub   r31, r27, r29
+          mul   r30, r30, r31
+          sub   r31, r20, r29
+          sub   r9, r26, r28
+          mul   r31, r31, r9
+          sub   r30, r30, r31
+          or    r8, r8, r30
+          lw    r28, 0(r23)       ; x0
+          lw    r29, 4(r23)       ; y0
+          sub   r30, r19, r26     ; e20 = (px-x2)(y0-y2) - (py-y2)(x0-x2)
+          sub   r31, r29, r27
+          mul   r30, r30, r31
+          sub   r31, r20, r27
+          sub   r9, r28, r26
+          mul   r31, r31, r9
+          sub   r30, r30, r31
+          or    r8, r8, r30
+          slti  r8, r8, 0         ; 1 if any edge negative (outside)
+          xori  r8, r8, 1
+          lw    r9, 28(r23)       ; depth
+          slt   r30, r9, r21
+          and   r8, r8, r30       ; covered and nearer
+          if    r8
+            mov   r21, r9
+            lw    r22, 24(r23)
+          endif
+          addi  r23, r23, 32
+          addi  r24, r24, 1
+          jmp   tri
+tri_done:
+          li    r25, 0x7fffffff
+          sub   r25, r21, r25
+          sltu  r25, r0, r25      ; covered by any triangle
+          srli  r26, r17, 2
+          srli  r27, r18, 2
+          xor   r26, r26, r27
+          andi  r26, r26, 1
+          and   r26, r26, r25
+          if    r26
+            srli  r22, r22, 1
+            li    r27, 0x7f7f7f
+            and   r22, r22, r27
+          endif
+          slli  r8, r6, 2
+          add   r8, r8, r10
+          sw    r22, 0(r8)
+        endif
+        add   r6, r6, r4
+        jmp   pix
+done:
+        exit

@@ -1,0 +1,24 @@
+
+4. Printing statistics.
+
+=== tfx_alu ===
+
+   Number of wires:              14425
+   Number of wire bits:          14556
+   Number of public wires:           9
+   Number of public wire bits:     140
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              14450
+     $_ANDNOT_                    4740
+     $_AND_                       1077
+     $_MUX_                        311
+     $_NAND_                       508
+     $_NOR_                        484
+     $_NOT_                        356
+     $_ORNOT_                      694
+     $_OR_                        1679
+     $_XNOR_                      1329
+     $_XOR_                       3272
+

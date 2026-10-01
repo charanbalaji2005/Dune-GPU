@@ -1,0 +1,25 @@
+
+5. Printing statistics.
+
+=== tfx_mul_pipe ===
+
+   Number of wires:              62485
+   Number of wire bits:          72569
+   Number of public wires:         182
+   Number of public wire bits:   10266
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              65379
+     $_ANDNOT_                   18680
+     $_AND_                       8525
+     $_MUX_                        248
+     $_NAND_                      3006
+     $_NOR_                       3815
+     $_NOT_                       2112
+     $_ORNOT_                     1617
+     $_OR_                        5759
+     $_SDFF_PN0_                  1540
+     $_XNOR_                      5751
+     $_XOR_                      14326
+

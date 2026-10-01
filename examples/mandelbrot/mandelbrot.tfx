@@ -1,0 +1,68 @@
+; mandelbrot.tfx -- Q12 fixed-point Mandelbrot escape-time image.
+; Heavy, data-dependent lane divergence: each lane iterates until its own
+; point escapes (|z|^2 > 4) or maxit is reached.
+;   arg0 = &out (one iteration count per pixel)  arg1 = W*H  arg2 = log2(W)
+;   arg3 = x0 (Q12)  arg4 = y0 (Q12)  arg5 = dx (Q12)  arg6 = dy (Q12)  arg7 = maxit
+        s2r   r1, global_tid
+        s2r   r2, num_lanes
+        s2r   r3, num_warps
+        mul   r4, r2, r3
+        s2r   r10, arg0
+        s2r   r11, arg1
+        s2r   r12, arg2
+        s2r   r13, arg3
+        s2r   r14, arg4
+        s2r   r15, arg5
+        s2r   r16, arg6
+        s2r   r17, arg7
+        movi  r18, 1
+        sll   r18, r18, r12
+        subi  r18, r18, 1         ; W-1
+        li    r19, 16384          ; 4.0 in Q12
+        mov   r6, r1
+pix:
+        slt   r7, r6, r11
+        bnone r7, done
+        if    r7
+          and   r20, r6, r18      ; x
+          srl   r21, r6, r12      ; y
+          mul   r22, r20, r15
+          add   r22, r22, r13     ; cr
+          mul   r23, r21, r16
+          add   r23, r23, r14     ; ci
+          movi  r24, 0            ; zr
+          movi  r25, 0            ; zi
+          movi  r26, 0            ; it
+          movi  r27, 1            ; lane still iterating
+iter:
+          bnone r27, iter_done
+          if    r27
+            mul   r28, r24, r24
+            srai  r28, r28, 12    ; zr^2
+            mul   r29, r25, r25
+            srai  r29, r29, 12    ; zi^2
+            add   r30, r28, r29
+            slt   r31, r19, r30   ; escaped?
+            xori  r31, r31, 1
+            if    r31
+              mul   r9, r24, r25
+              srai  r9, r9, 11    ; 2*zr*zi
+              add   r25, r9, r23
+              sub   r24, r28, r29
+              add   r24, r24, r22
+              addi  r26, r26, 1
+              slt   r27, r26, r17
+            else
+              movi  r27, 0
+            endif
+          endif
+          jmp   iter
+iter_done:
+          slli  r8, r6, 2
+          add   r8, r8, r10
+          sw    r26, 0(r8)
+        endif
+        add   r6, r6, r4
+        jmp   pix
+done:
+        exit

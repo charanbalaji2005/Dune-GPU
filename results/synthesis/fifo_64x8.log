@@ -1,0 +1,785 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.33 (git sha1 2584903a060)
+
+
+-- Running command `read_verilog /home/claude/CharanGPU/build/synth/charangpu.v; chparam -set DATA_W 64 -set DEPTH 8 tfx_fifo; hierarchy -top tfx_fifo; synth -flatten -top tfx_fifo;         tee -o /home/claude/CharanGPU/results/synthesis/fifo_64x8.stat.txt stat; tee -o /home/claude/CharanGPU/results/synthesis/fifo_64x8.ltp.txt ltp -noff' --
+
+1. Executing Verilog-2005 frontend: /home/claude/CharanGPU/build/synth/charangpu.v
+Parsing Verilog input from `/home/claude/CharanGPU/build/synth/charangpu.v' to AST representation.
+Generating RTLIL representation for module `\tfx_alu'.
+Generating RTLIL representation for module `\tfx_mul_pipe'.
+Generating RTLIL representation for module `\tfx_decoder'.
+Generating RTLIL representation for module `\tfx_warp_scheduler'.
+Generating RTLIL representation for module `\tfx_scratchpad'.
+Generating RTLIL representation for module `\tfx_lsu'.
+Generating RTLIL representation for module `\tfx_simt_cluster'.
+Generating RTLIL representation for module `\tfx_command_processor'.
+Generating RTLIL representation for module `\tfx_fifo'.
+Generating RTLIL representation for module `\tfx_token_channel'.
+Generating RTLIL representation for module `\charangpu_tfx_top'.
+Successfully finished Verilog frontend.
+Parameter \DATA_W = 64
+Parameter \DEPTH = 8
+
+2. Executing AST frontend in derive mode using pre-parsed AST for module `\tfx_fifo'.
+Parameter \DATA_W = 64
+Parameter \DEPTH = 8
+Generating RTLIL representation for module `$paramod$19eef3b106d7d283319fdf1982a94a66c38262ec\tfx_fifo'.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1. Analyzing design hierarchy..
+Top module:  \tfx_fifo
+
+3.2. Analyzing design hierarchy..
+Top module:  \tfx_fifo
+Removing unused module `\charangpu_tfx_top'.
+Removing unused module `\tfx_token_channel'.
+Removing unused module `\tfx_command_processor'.
+Removing unused module `\tfx_simt_cluster'.
+Removing unused module `\tfx_lsu'.
+Removing unused module `\tfx_scratchpad'.
+Removing unused module `\tfx_warp_scheduler'.
+Removing unused module `\tfx_decoder'.
+Removing unused module `\tfx_mul_pipe'.
+Removing unused module `\tfx_alu'.
+Removed 10 unused modules.
+
+4. Executing SYNTH pass.
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \tfx_fifo
+
+4.1.2. Analyzing design hierarchy..
+Top module:  \tfx_fifo
+Removed 0 unused modules.
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 6 switch rules as full_case in process $proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960 in module tfx_fifo.
+Removed a total of 0 dead cases.
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 7 assignments to connections.
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~6 debug messages>
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+     1/19: $3\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1907$6949.$result[2:0]$6987
+     2/19: $2\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1907$6949.$result[2:0]$6984
+     3/19: $2\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1907$6949.ptr[2:0]$6985
+     4/19: $3\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1904$6947.$result[2:0]$6982
+     5/19: $2\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1904$6947.$result[2:0]$6976
+     6/19: $2\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1904$6947.ptr[2:0]$6977
+     7/19: $2$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6980
+     8/19: $2$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_DATA[63:0]$6979
+     9/19: $2$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_ADDR[2:0]$6978
+    10/19: $0\count[3:0]
+    11/19: $1$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6975
+    12/19: $1$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_DATA[63:0]$6974
+    13/19: $1$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_ADDR[2:0]$6973
+    14/19: $1\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1907$6949.ptr[2:0]$6972
+    15/19: $1\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1907$6949.$result[2:0]$6971
+    16/19: $1\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1904$6947.ptr[2:0]$6970
+    17/19: $1\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1904$6947.$result[2:0]$6969
+    18/19: $0\read_ptr[2:0]
+    19/19: $0\write_ptr[2:0]
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\tfx_fifo.\count' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7091' with positive edge clock.
+Creating register for signal `\tfx_fifo.\write_ptr' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7092' with positive edge clock.
+Creating register for signal `\tfx_fifo.\read_ptr' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7093' with positive edge clock.
+Creating register for signal `\tfx_fifo.\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1904$6947.$result' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7094' with positive edge clock.
+Creating register for signal `\tfx_fifo.\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1904$6947.ptr' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7095' with positive edge clock.
+Creating register for signal `\tfx_fifo.\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1907$6949.$result' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7096' with positive edge clock.
+Creating register for signal `\tfx_fifo.\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1907$6949.ptr' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7097' with positive edge clock.
+Creating register for signal `\tfx_fifo.$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_ADDR' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7098' with positive edge clock.
+Creating register for signal `\tfx_fifo.$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_DATA' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7099' with positive edge clock.
+Creating register for signal `\tfx_fifo.$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN' using process `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+  created $dff cell `$procdff$7100' with positive edge clock.
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 6 empty switches in `\tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+Removing empty process `tfx_fifo.$proc$/home/claude/CharanGPU/build/synth/charangpu.v:1895$6960'.
+Cleaned up 6 empty switches.
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+<suppressed ~20 debug messages>
+
+4.3. Executing FLATTEN pass (flatten design).
+
+4.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+Removed 20 unused cells and 83 unused wires.
+<suppressed ~23 debug messages>
+
+4.6. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_fifo...
+Found and reported 0 problems.
+
+4.7. Executing OPT pass (performing simple optimizations).
+
+4.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 2/2 on $mux $procmux$6995.
+    dead port 2/2 on $mux $procmux$6998.
+    dead port 2/2 on $mux $procmux$7016.
+    dead port 2/2 on $mux $procmux$7019.
+    dead port 2/2 on $mux $procmux$7037.
+    dead port 2/2 on $mux $procmux$7043.
+    dead port 2/2 on $mux $procmux$7049.
+Removed 7 multiplexer ports.
+<suppressed ~7 debug messages>
+
+4.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_fifo.
+    Consolidated identical input bits for $mux cell $procmux$7034:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B=64'1111111111111111111111111111111111111111111111111111111111111111, Y=$procmux$7034_Y
+      New ports: A=1'0, B=1'1, Y=$procmux$7034_Y [0]
+      New connections: $procmux$7034_Y [63:1] = { $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] $procmux$7034_Y [0] }
+  Optimizing cells in module \tfx_fifo.
+    Consolidated identical input bits for $mux cell $procmux$7059:
+      Old ports: A=64'0000000000000000000000000000000000000000000000000000000000000000, B=$2$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6980, Y=$0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967
+      New ports: A=1'0, B=$procmux$7034_Y [0], Y=$0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0]
+      New connections: $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [63:1] = { $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] $0$memwr$\mem$/home/claude/CharanGPU/build/synth/charangpu.v:1903$6951_EN[63:0]$6967 [0] }
+  Optimizing cells in module \tfx_fifo.
+Performed a total of 2 changes.
+
+4.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+Removed 0 unused cells and 7 unused wires.
+<suppressed ~1 debug messages>
+
+4.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+4.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_fifo.
+Performed a total of 0 changes.
+
+4.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.7.16. Finished OPT passes. (There is nothing left to do.)
+
+4.8. Executing FSM pass (extract and optimize FSM).
+
+4.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+
+4.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+4.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+4.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+4.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+4.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+4.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+4.9. Executing OPT pass (performing simple optimizations).
+
+4.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+4.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_fifo.
+Performed a total of 0 changes.
+
+4.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $procdff$7093 ($dff) from module tfx_fifo (D = $procmux$7080_Y, Q = \read_ptr, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$7102 ($sdff) from module tfx_fifo (D = $3\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1907$6949.$result[2:0]$6987, Q = \read_ptr).
+Adding SRST signal on $procdff$7092 ($dff) from module tfx_fifo (D = $procmux$7086_Y, Q = \write_ptr, rval = 3'000).
+Adding EN signal on $auto$ff.cc:266:slice$7104 ($sdff) from module tfx_fifo (D = $3\next_ptr$func$/home/claude/CharanGPU/build/synth/charangpu.v:1904$6947.$result[2:0]$6982, Q = \write_ptr).
+Adding SRST signal on $procdff$7091 ($dff) from module tfx_fifo (D = $procmux$7052_Y, Q = \count, rval = 4'0000).
+Adding EN signal on $auto$ff.cc:266:slice$7106 ($sdff) from module tfx_fifo (D = $procmux$7052_Y, Q = \count).
+
+4.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+Removed 5 unused cells and 5 unused wires.
+<suppressed ~6 debug messages>
+
+4.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+<suppressed ~1 debug messages>
+
+4.9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+4.9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_fifo.
+Performed a total of 0 changes.
+
+4.9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.9.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.9.16. Finished OPT passes. (There is nothing left to do.)
+
+4.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 1 bits (of 2) from port B of cell tfx_fifo.$procmux$7053_CMP0 ($eq).
+
+4.11. Executing PEEPOPT pass (run peephole optimizers).
+
+4.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module tfx_fifo:
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:1893$6983 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:1893$6988 ($add).
+  creating $macc model for $add$/home/claude/CharanGPU/build/synth/charangpu.v:1909$6989 ($add).
+  creating $macc model for $sub$/home/claude/CharanGPU/build/synth/charangpu.v:1910$6990 ($sub).
+  creating $alu model for $macc $sub$/home/claude/CharanGPU/build/synth/charangpu.v:1910$6990.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:1909$6989.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:1893$6988.
+  creating $alu model for $macc $add$/home/claude/CharanGPU/build/synth/charangpu.v:1893$6983.
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:1893$6983: $auto$alumacc.cc:485:replace_alu$7110
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:1893$6988: $auto$alumacc.cc:485:replace_alu$7113
+  creating $alu cell for $add$/home/claude/CharanGPU/build/synth/charangpu.v:1909$6989: $auto$alumacc.cc:485:replace_alu$7116
+  creating $alu cell for $sub$/home/claude/CharanGPU/build/synth/charangpu.v:1910$6990: $auto$alumacc.cc:485:replace_alu$7119
+  created 4 $alu and 0 $macc cells.
+
+4.14. Executing SHARE pass (SAT-based resource sharing).
+
+4.15. Executing OPT pass (performing simple optimizations).
+
+4.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+4.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_fifo.
+Performed a total of 0 changes.
+
+4.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.15.9. Finished OPT passes. (There is nothing left to do.)
+
+4.16. Executing MEMORY pass.
+
+4.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+4.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+4.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+  Analyzing tfx_fifo.mem write port 0.
+
+4.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+4.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `\mem'[0] in module `\tfx_fifo': no output FF found.
+Checking read port address `\mem'[0] in module `\tfx_fifo': merged address FF to cell.
+
+4.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+4.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+4.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+4.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.18. Executing OPT pass (performing simple optimizations).
+
+4.18.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+<suppressed ~7 debug messages>
+
+4.18.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.18.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.18.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+Removed 0 unused cells and 5 unused wires.
+<suppressed ~1 debug messages>
+
+4.18.5. Finished fast OPT passes.
+
+4.19. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory \mem in module \tfx_fifo:
+  created 8 $dff cells and 0 static cells of width 64.
+Extracted addr FF from read port 0 of tfx_fifo.mem: $\mem$rdreg[0]
+  read interface: 1 $dff and 7 $mux cells.
+  write interface: 8 write mux blocks.
+
+4.20. Executing OPT pass (performing simple optimizations).
+
+4.20.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+<suppressed ~6 debug messages>
+
+4.20.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.20.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~13 debug messages>
+
+4.20.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_fifo.
+Performed a total of 0 changes.
+
+4.20.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.20.6. Executing OPT_SHARE pass.
+    Found cells that share an operand and can be merged by moving the $mux $procmux$7052 in front of them:
+        $auto$alumacc.cc:485:replace_alu$7119
+        $auto$alumacc.cc:485:replace_alu$7116
+
+4.20.7. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $\mem$rdreg[0] ($dff) from module tfx_fifo (D = $auto$rtlil.cc:2498:Mux$7125, Q = $\mem$rdreg[0]$q, rval = 3'000).
+
+4.20.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+Removed 1 unused cells and 26 unused wires.
+<suppressed ~2 debug messages>
+
+4.20.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+<suppressed ~2 debug messages>
+
+4.20.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.20.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~13 debug messages>
+
+4.20.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_fifo.
+    Consolidated identical input bits for $mux cell $auto$opt_share.cc:244:merge_operators$7236:
+      Old ports: A=4'1111, B=4'0001, Y=$auto$rtlil.cc:2498:Mux$7237
+      New ports: A=1'1, B=1'0, Y=$auto$rtlil.cc:2498:Mux$7237 [1]
+      New connections: { $auto$rtlil.cc:2498:Mux$7237 [3:2] $auto$rtlil.cc:2498:Mux$7237 [0] } = { $auto$rtlil.cc:2498:Mux$7237 [1] $auto$rtlil.cc:2498:Mux$7237 [1] 1'1 }
+  Optimizing cells in module \tfx_fifo.
+Performed a total of 1 changes.
+
+4.20.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.20.14. Executing OPT_SHARE pass.
+
+4.20.15. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $memory\mem[7]$7142 ($dff) from module tfx_fifo (D = \push_data, Q = \mem[7]).
+Adding EN signal on $memory\mem[6]$7140 ($dff) from module tfx_fifo (D = \push_data, Q = \mem[6]).
+Adding EN signal on $memory\mem[5]$7138 ($dff) from module tfx_fifo (D = \push_data, Q = \mem[5]).
+Adding EN signal on $memory\mem[4]$7136 ($dff) from module tfx_fifo (D = \push_data, Q = \mem[4]).
+Adding EN signal on $memory\mem[3]$7134 ($dff) from module tfx_fifo (D = \push_data, Q = \mem[3]).
+Adding EN signal on $memory\mem[2]$7132 ($dff) from module tfx_fifo (D = \push_data, Q = \mem[2]).
+Adding EN signal on $memory\mem[1]$7130 ($dff) from module tfx_fifo (D = \push_data, Q = \mem[1]).
+Adding EN signal on $memory\mem[0]$7128 ($dff) from module tfx_fifo (D = \push_data, Q = \mem[0]).
+
+4.20.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+Removed 8 unused cells and 10 unused wires.
+<suppressed ~9 debug messages>
+
+4.20.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+<suppressed ~1 debug messages>
+
+4.20.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+4.20.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \tfx_fifo..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~4 debug messages>
+
+4.20.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \tfx_fifo.
+Performed a total of 0 changes.
+
+4.20.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.20.22. Executing OPT_SHARE pass.
+
+4.20.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.20.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+
+4.20.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+
+4.20.26. Finished OPT passes. (There is nothing left to do.)
+
+4.21. Executing TECHMAP pass (map to technology primitives).
+
+4.21.1. Executing Verilog-2005 frontend: /usr/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/usr/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+4.21.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $dffe.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $sdff.
+Using extmapper simplemap for cells of type $sdffe.
+Using extmapper simplemap for cells of type $eq.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $logic_and.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_90_alu for cells of type $alu.
+Using template $paramod$740b056ede97228d3eae64ea2fdc81f0a33e0fe7\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000100 for cells of type $lcu.
+Using extmapper simplemap for cells of type $or.
+No more expansions possible.
+<suppressed ~437 debug messages>
+
+4.22. Executing OPT pass (performing simple optimizations).
+
+4.22.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+<suppressed ~128 debug messages>
+
+4.22.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+<suppressed ~45 debug messages>
+Removed a total of 15 cells.
+
+4.22.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.22.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+Removed 10 unused cells and 109 unused wires.
+<suppressed ~11 debug messages>
+
+4.22.5. Finished fast OPT passes.
+
+4.23. Executing ABC pass (technology mapping using ABC).
+
+4.23.1. Extracting gate netlist of module `\tfx_fifo' to `<abc-temp-dir>/input.blif'..
+Extracted 588 gates and 1117 wires to a netlist network with 528 inputs and 90 outputs.
+
+4.23.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+4.23.1.2. Re-integrating ABC results.
+ABC RESULTS:               NOT cells:        5
+ABC RESULTS:               MUX cells:      451
+ABC RESULTS:               AND cells:        6
+ABC RESULTS:             ORNOT cells:        4
+ABC RESULTS:                OR cells:        9
+ABC RESULTS:               NOR cells:        3
+ABC RESULTS:              XNOR cells:        4
+ABC RESULTS:              NAND cells:        3
+ABC RESULTS:            ANDNOT cells:       82
+ABC RESULTS:               XOR cells:        7
+ABC RESULTS:        internal signals:      499
+ABC RESULTS:           input signals:      528
+ABC RESULTS:          output signals:       90
+Removing temp directory.
+
+4.24. Executing OPT pass (performing simple optimizations).
+
+4.24.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module tfx_fifo.
+<suppressed ~195 debug messages>
+
+4.24.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\tfx_fifo'.
+Removed a total of 0 cells.
+
+4.24.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+4.24.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \tfx_fifo..
+Removed 3 unused cells and 669 unused wires.
+<suppressed ~5 debug messages>
+
+4.24.5. Finished fast OPT passes.
+
+4.25. Executing HIERARCHY pass (managing design hierarchy).
+
+4.25.1. Analyzing design hierarchy..
+Top module:  \tfx_fifo
+
+4.25.2. Analyzing design hierarchy..
+Top module:  \tfx_fifo
+Removed 0 unused modules.
+
+4.26. Printing statistics.
+
+=== tfx_fifo ===
+
+   Number of wires:                518
+   Number of wire bits:           1164
+   Number of public wires:          20
+   Number of public wire bits:     657
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1096
+     $_ANDNOT_                      82
+     $_AND_                          6
+     $_DFFE_PP_                    512
+     $_MUX_                        451
+     $_NAND_                         3
+     $_NOR_                          3
+     $_NOT_                          2
+     $_ORNOT_                        4
+     $_OR_                           9
+     $_SDFFE_PN0N_                   3
+     $_SDFFE_PN0P_                   7
+     $_SDFF_PN0_                     3
+     $_XNOR_                         4
+     $_XOR_                          7
+
+4.27. Executing CHECK pass (checking for obvious problems).
+Checking module tfx_fifo...
+Found and reported 0 problems.
+
+5. Printing statistics.
+
+=== tfx_fifo ===
+
+   Number of wires:                518
+   Number of wire bits:           1164
+   Number of public wires:          20
+   Number of public wire bits:     657
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1096
+     $_ANDNOT_                      82
+     $_AND_                          6
+     $_DFFE_PP_                    512
+     $_MUX_                        451
+     $_NAND_                         3
+     $_NOR_                          3
+     $_NOT_                          2
+     $_ORNOT_                        4
+     $_OR_                           9
+     $_SDFFE_PN0N_                   3
+     $_SDFFE_PN0P_                   7
+     $_SDFF_PN0_                     3
+     $_XNOR_                         4
+     $_XOR_                          7
+
+6. Executing LTP pass (find longest path).
+
+Longest topological path in tfx_fifo (length=10):
+    0: \count [3]
+    1: $abc$8604$new_n624_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$8610)
+    2: \full (via $abc$8604$auto$blifparse.cc:386:parse_blif$8611)
+    3: \do_push (via $abc$8604$auto$blifparse.cc:386:parse_blif$8612)
+    4: $abc$8604$new_n1180_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9166)
+    5: $abc$8604$new_n1181_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9167)
+    6: $abc$8604$new_n1185_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9171)
+    7: $abc$8604$new_n1186_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9172)
+    8: $abc$8604$new_n1190_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9176)
+    9: $abc$8604$new_n1191_ (via $abc$8604$auto$blifparse.cc:386:parse_blif$9177)
+   10: $auto$alumacc.cc:485:replace_alu$7119.Y [3] (via $abc$8604$auto$blifparse.cc:386:parse_blif$9178)
+   ff: \count [3] (via $auto$ff.cc:266:slice$7551)
+
+End of script. Logfile hash: 327920fc1f, CPU: user 1.01s system 0.02s, MEM: 65.19 MB peak
+Yosys 0.33 (git sha1 2584903a060)
+Time spent: 62% 3x read_verilog (0 sec), 9% 21x opt_expr (0 sec), ...

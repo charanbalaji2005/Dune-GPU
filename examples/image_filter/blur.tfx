@@ -1,0 +1,97 @@
+; blur.tfx -- 3x3 binomial blur ([1 2 1] x [1 2 1] / 16) with clamp-to-edge,
+; completely branch-free inside the pixel loop (edge clamping uses SLTU/SEQ
+; arithmetic instead of if/else) -- the opposite divergence profile of mandelbrot.
+; (the 9 tap sequences were emitted by a one-off script; this file is plain assembly)
+;   arg0 = &in  arg1 = &out  arg2 = W*H  arg3 = log2(W)  arg4 = H-1
+        s2r   r1, global_tid
+        s2r   r2, num_lanes
+        s2r   r3, num_warps
+        mul   r4, r2, r3
+        s2r   r10, arg0
+        s2r   r11, arg1
+        s2r   r12, arg2
+        s2r   r13, arg3
+        s2r   r14, arg4
+        movi  r15, 1
+        sll   r15, r15, r13
+        subi  r15, r15, 1         ; W-1
+        mov   r6, r1
+pix:
+        slt   r7, r6, r12
+        bnone r7, done
+        if    r7
+          and   r16, r6, r15      ; x
+          srl   r17, r6, r13      ; y
+          sltu  r18, r0, r16
+          sub   r18, r16, r18     ; xm = max(x-1, 0)
+          seq   r19, r16, r15
+          xori  r19, r19, 1
+          add   r19, r16, r19     ; xp = min(x+1, W-1)
+          sltu  r20, r0, r17
+          sub   r20, r17, r20     ; ym
+          seq   r21, r17, r14
+          xori  r21, r21, 1
+          add   r21, r17, r21     ; yp
+          sll   r22, r20, r13     ; row offsets (words)
+          sll   r23, r17, r13
+          sll   r24, r21, r13
+          movi  r25, 0
+          add   r26, r22, r18
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          add   r25, r25, r27
+          add   r26, r22, r16
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          slli  r27, r27, 1
+          add   r25, r25, r27
+          add   r26, r22, r19
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          add   r25, r25, r27
+          add   r26, r23, r18
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          slli  r27, r27, 1
+          add   r25, r25, r27
+          add   r26, r23, r16
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          slli  r27, r27, 2
+          add   r25, r25, r27
+          add   r26, r23, r19
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          slli  r27, r27, 1
+          add   r25, r25, r27
+          add   r26, r24, r18
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          add   r25, r25, r27
+          add   r26, r24, r16
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          slli  r27, r27, 1
+          add   r25, r25, r27
+          add   r26, r24, r19
+          slli  r26, r26, 2
+          add   r26, r26, r10
+          lw    r27, 0(r26)
+          add   r25, r25, r27
+          srli  r25, r25, 4
+          slli  r26, r6, 2
+          add   r26, r26, r11
+          sw    r25, 0(r26)
+        endif
+        add   r6, r6, r4
+        jmp   pix
+done:
+        exit

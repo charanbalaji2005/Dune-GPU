@@ -1,0 +1,15 @@
+; oob_load.tfx -- fault injection (generated for tfx_base by tools/cosim/faults.py).
+; Warp 1 must stop with fault code 3 at label fault_here; all other warps complete.
+        s2r   r1, warp_id
+        seqi  r2, r1, 1
+        bany  r2, bad
+        s2r   r3, global_tid
+        addi  r4, r3, 77
+        slli  r3, r3, 2
+        sw    r4, 0(r3)
+        exit
+bad:
+        li    r5, 8192
+fault_here:
+        lw    r6, 0(r5)
+        exit

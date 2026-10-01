@@ -1,0 +1,25 @@
+; stride.tfx -- scratchpad bank-conflict microbenchmark.
+; Lane l repeatedly loads word (base_word + l * stride). With B banks and
+; stride s, lanes collide when (l*s) mod B repeats; stride 0 is a broadcast.
+;   arg0 = &base  arg1 = stride (words)  arg2 = repeats  arg3 = &out
+        s2r   r1, global_tid
+        s2r   r2, lane_id
+        s2r   r10, arg0
+        s2r   r11, arg1
+        s2r   r12, arg2
+        s2r   r13, arg3
+        mul   r5, r2, r11
+        slli  r5, r5, 2
+        add   r5, r5, r10
+        movi  r6, 0
+        movi  r7, 0
+loop:
+        lw    r8, 0(r5)
+        add   r6, r6, r8
+        addi  r7, r7, 1
+        slt   r9, r7, r12
+        bany  r9, loop
+        slli  r14, r1, 2
+        add   r14, r14, r13
+        sw    r6, 0(r14)
+        exit

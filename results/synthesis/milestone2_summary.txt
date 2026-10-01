@@ -1,0 +1,7 @@
+alu: 14450 generic cells, longest combinational path 53 cells (unit delay)
+decoder: 518 generic cells, longest combinational path 14 cells (unit delay)
+scheduler_4w: 76 generic cells, longest combinational path 14 cells (unit delay)
+fifo_64x8: 1095 generic cells, longest combinational path 10 cells (unit delay)
+lsu_4w8l8b: 11448 generic cells, longest combinational path 53 cells (unit delay)
+command_processor: 820 generic cells, longest combinational path 9 cells (unit delay)
+cluster_2w4l_tiny: 130030 generic cells, longest combinational path 70 cells (unit delay)

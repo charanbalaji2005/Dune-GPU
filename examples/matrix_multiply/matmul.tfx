@@ -1,0 +1,47 @@
+; matmul.tfx -- C = A x B for N x N int32 matrices (N power of two), one output
+; element per thread per grid-stride iteration, row-major storage.
+;   arg0 = &A  arg1 = &B  arg2 = &C  arg3 = N  arg4 = log2(N)
+        s2r   r1, global_tid
+        s2r   r2, num_lanes
+        s2r   r3, num_warps
+        mul   r4, r2, r3
+        s2r   r10, arg0
+        s2r   r11, arg1
+        s2r   r12, arg2
+        s2r   r13, arg3
+        s2r   r14, arg4
+        mul   r15, r13, r13       ; N*N
+        subi  r16, r13, 1         ; N-1
+        slli  r21, r13, 2         ; row stride in bytes
+        mov   r6, r1
+outer:
+        slt   r7, r6, r15
+        bnone r7, done
+        if    r7
+          srl   r17, r6, r14      ; row
+          and   r18, r6, r16      ; col
+          sll   r19, r17, r14
+          slli  r19, r19, 2
+          add   r19, r19, r10     ; &A[row][0]
+          slli  r20, r18, 2
+          add   r20, r20, r11     ; &B[0][col]
+          movi  r22, 0            ; acc
+          movi  r23, 0            ; k
+inner:
+          lw    r24, 0(r19)
+          lw    r25, 0(r20)
+          mul   r24, r24, r25
+          add   r22, r22, r24
+          addi  r19, r19, 4
+          add   r20, r20, r21
+          addi  r23, r23, 1
+          slt   r26, r23, r13
+          bany  r26, inner        ; k is uniform across active lanes
+          slli  r27, r6, 2
+          add   r27, r27, r12
+          sw    r22, 0(r27)
+        endif
+        add   r6, r6, r4
+        jmp   outer
+done:
+        exit

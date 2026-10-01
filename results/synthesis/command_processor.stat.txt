@@ -1,0 +1,23 @@
+
+4. Printing statistics.
+
+=== tfx_command_processor ===
+
+   Number of wires:                650
+   Number of wire bits:           1299
+   Number of public wires:          39
+   Number of public wire bits:     623
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                822
+     $_ANDNOT_                     426
+     $_AND_                          7
+     $_MUX_                         72
+     $_NAND_                         5
+     $_NOR_                          6
+     $_NOT_                          2
+     $_ORNOT_                       75
+     $_OR_                          98
+     $_SDFFE_PN0P_                 131
+

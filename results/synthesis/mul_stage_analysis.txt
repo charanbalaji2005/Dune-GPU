@@ -1,0 +1,4 @@
+stage_a: 6538 generic cells, depth 34
+stage_b_chained: 889 generic cells, depth 46
+stage_b_csa: 1230 generic cells, depth 28
+monolithic_32x32: 6405 generic cells, depth 44

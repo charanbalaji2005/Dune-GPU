@@ -1,0 +1,11 @@
+{
+  "name": "tfx_wide",
+  "num_warps": 8,
+  "num_lanes": 16,
+  "imem_depth": 256,
+  "spm_words": 4096,
+  "spm_banks": 16,
+  "mul_latency": 4,
+  "stack_depth": 8,
+  "sched_policy": "lrr"
+}
